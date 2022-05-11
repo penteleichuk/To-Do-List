@@ -1,0 +1,9 @@
+.todo {
+    min-width: 700px;
+}
+
+.todo__wrapper {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}

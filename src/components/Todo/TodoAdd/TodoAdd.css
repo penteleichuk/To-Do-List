@@ -1,0 +1,66 @@
+.todo-add {
+    display: flex;
+    position: relative;
+    width: 100%;
+}
+
+.todo-add__input {
+    padding: 10px;
+    width: 100%;
+    background: #f7f4f4;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+}
+
+.dark .todo-add__input {
+    background: #2c2c2c;
+    border: 1px solid #525252;
+    color: #ccc;
+}
+
+.dark .todo-add__input:focus {
+    outline: 1px solid #0e0e0e;
+}
+
+.todo-add__submit {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    background: #c0e7ac;
+    padding: 0 7px;
+    border-radius: 3px;
+    line-height: 25px;
+    color: #ffffff;
+}
+
+.dark .todo-add__submit {
+    background: #386826;
+    color: #fff;
+}
+
+.todo-add__submit:hover {
+    cursor: pointer;
+    background: #85b36d;
+}
+
+.todo-add__message {
+    position: absolute;
+    right: 40px;
+    top: 11px;
+    text-align: right;
+    padding: 2px 5px;
+    font-size: .8rem;
+    display: none;
+}
+
+.todo-add__message-error {
+    color: #e74c4c;
+    display: block;
+    right: 10px;
+}
+
+.todo-add__message-success {
+    color: #67a14a;
+    right: 10px;
+    display: block;
+}

@@ -1,0 +1,47 @@
+.task-nav {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.task-nav__item {
+    width: 100%;
+    background: #e9e9e9;
+    margin-right: 10px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: .8rem;
+    color: #686868;
+}
+
+.dark .task-nav__item {
+    background: #383737;
+    color: #e5ffdb;
+}
+
+.task-nav__item:hover, .task-nav__item-active:hover {
+    background: #d3d3d3;
+}
+
+.dark .task-nav__item:hover {
+    background: #396826;
+}
+
+.task-nav__item:hover {
+    cursor: pointer;
+}
+
+.task-nav__item-active {
+    background: #d0d1d0;
+}
+
+.dark .task-nav__item-active {
+    background: #396826;
+}
+
+.task-nav__item:last-child {
+    margin: 0;
+}

@@ -1,0 +1,38 @@
+
+.todo-switch {
+    display: flex;
+    align-items: stretch;
+    margin-left: 20px;
+}
+
+.todo-switch__light {
+    border-radius: 3px 0 0 3px;
+}
+
+.todo-switch__dark {
+    border-radius: 0 3px 3px 0;
+}
+
+.todo-switch__btn {
+    background: #cccccc;
+    line-height: 40px;
+    padding: 0 20px;
+    font-size: .7rem;
+    font-weight: 800;
+    color: #707070;
+    text-transform: uppercase;
+}
+
+.todo-switch__btn:hover, .todo-switch__btn.active:hover {
+    background: #7ba7eb;
+    color: #eaf9ff;
+}
+
+.todo-switch__btn.active {
+    background: #707070;
+    color: #e3dddd;
+}
+
+.todo-switch__btn:hover {
+    cursor: pointer;
+}

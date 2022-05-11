@@ -1,0 +1,18 @@
+.task {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+    grid-gap: 10px;
+}
+
+.task__wrapper {
+    background: #f5f5f5;
+    border: 1px solid #cccccc;
+    padding: 20px;
+    border-radius: 9px;
+}
+
+.dark .task__wrapper {
+    background: #242424;
+    border: 1px solid #404040;
+}
