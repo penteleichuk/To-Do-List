@@ -1,0 +1,13 @@
+.app {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ededed;
+    padding: 20px;
+}
+
+.app.dark {
+    background: #303030;
+}
