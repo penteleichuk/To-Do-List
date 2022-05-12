@@ -5,7 +5,6 @@ import { Sheet } from "./Sheet";
 
 export const SheetPage = (): JSX.Element => {
 	const design = useSelector<AppStoreType, DesignType>(state => state.app.theme);
-	const classTheme = design === 'dark' ? 'app dark' : 'app';
 
-	return <Sheet design={design} classTheme={classTheme} />
+	return <Sheet design={design} />
 }

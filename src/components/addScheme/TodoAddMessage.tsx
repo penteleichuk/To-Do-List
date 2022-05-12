@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import { useEffect } from "react";
 
 export type TodoAddMessagePropsType = {
     type: null | "error" | "success"
@@ -6,9 +6,9 @@ export type TodoAddMessagePropsType = {
     setMessage?: any
 }
 
-export const TodoAddMessage = ({message, type, ...props}: TodoAddMessagePropsType) => {
+export const TodoAddMessage = ({ message, type, setMessage }: TodoAddMessagePropsType) => {
     useEffect(() => {
-        const timer = setTimeout(() => props.setMessage({type: null, message: null}), 1500);
+        const timer = setTimeout(() => setMessage({ type: null, message: null }), 1500);
         return () => clearTimeout(timer);
     });
 

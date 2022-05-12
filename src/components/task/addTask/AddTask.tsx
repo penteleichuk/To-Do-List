@@ -1,9 +1,9 @@
-import {KeyboardEvent} from 'react'
-import {ChangeEvent, useState} from "react";
-import './TaskAdd.css'
-import {TasksPropsType} from "../../Todo/TodoMain/Todo";
+import { KeyboardEvent } from 'react'
+import { ChangeEvent, useState } from "react";
+import { TasksPropsType } from '../../../pages/sheet/s1-ui/Sheet';
+import './AddTask.css'
 
-type TaskAddPropsType = {
+type AddTaskPropsType = {
     id: string
     title: string
     tasks: Array<TasksPropsType>
@@ -11,7 +11,7 @@ type TaskAddPropsType = {
     removeSchedule: (id: string) => void
 }
 
-export const TaskAdd = ({addTask, ...props}: TaskAddPropsType) => {
+export const AddTask = ({ addTask, ...props }: AddTaskPropsType) => {
     const [title, setTitle] = useState<string>('');
 
     const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +41,7 @@ export const TaskAdd = ({addTask, ...props}: TaskAddPropsType) => {
             </div>
             <div className="task-add__form">
                 <input type="text" placeholder='Add task...' value={title} onChange={onChangeTitle}
-                       onKeyPress={onKeyPressHandler} className="task-add__input"/>
+                    onKeyPress={onKeyPressHandler} className="task-add__input" />
                 {title.length > 2 && <span className="task-add__submit" onClick={onClickHandler}>+</span>}
             </div>
         </div>

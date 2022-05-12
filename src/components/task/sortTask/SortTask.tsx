@@ -1,13 +1,13 @@
-import {SortPropsType} from "../TaskMain/Task";
-import './TaskNav.css'
+import { SortPropsType } from "../renderTask/RenderTask";
+import './SortTask.css'
 
-type TaskNavPropsType = {
+type SortTaskPropsType = {
     taskLength: boolean
     setSort: (type: SortPropsType) => void
     sort: SortPropsType
 }
 
-export const TaskNav = ({taskLength, setSort, sort}: TaskNavPropsType) => {
+export const SortTask = ({ taskLength, setSort, sort }: SortTaskPropsType) => {
     return (
         <>
             {

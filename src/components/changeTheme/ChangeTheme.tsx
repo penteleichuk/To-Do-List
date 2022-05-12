@@ -1,13 +1,13 @@
-import { DesignType } from '../../../app/s2-bll/state/appState';
-import { changeTheme } from '../../../app/s2-bll/thunks/thunks';
-import { useAppDispatch } from '../../../hooks/useAppDispatch';
-import './TodoSwitch.css';
+import { DesignType } from '../../app/s2-bll/state/appState';
+import { changeTheme } from '../../app/s2-bll/thunks/thunks';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import './ChangeTheme.css';
 
-type TodoSwitchPropsType = {
+type ChangeThemePropsType = {
     design: DesignType
 }
 
-export const TodoSwitch = ({ design }: TodoSwitchPropsType) => {
+export const ChangeTheme = ({ design }: ChangeThemePropsType) => {
     const dispatch = useAppDispatch();
 
     const styleLight = design === 'light' ? "todo-switch__btn todo-switch__light active" : "todo-switch__btn todo-switch__light";

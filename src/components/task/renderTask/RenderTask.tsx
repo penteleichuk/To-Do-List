@@ -1,11 +1,11 @@
-import {useState} from "react";
-import './Task.css';
-import {TaskAdd} from "../TaskAdd/TaskAdd";
-import {TaskNav} from "../TaskNav/TaskNav";
-import {TasksPropsType} from "../../Todo/TodoMain/Todo";
-import { TaskList } from '../TaskList/TaskList';
+import { useState } from "react";
+import { AddTask } from "../addTask/AddTask";
+import { ListTask } from '../listTask/ListTask';
+import { TasksPropsType } from "../../../pages/sheet/s1-ui/Sheet";
+import { SortTask } from "../sortTask/SortTask";
+import './RenderTask.css';
 
-type TaskPropsType = {
+type RenderTaskPropsType = {
     id: string
     title: string
     tasks: Array<TasksPropsType>
@@ -15,7 +15,7 @@ type TaskPropsType = {
 
 export type SortPropsType = 'all' | 'active' | 'completed';
 
-export const Task = (props: TaskPropsType) => {
+export const RenderTask = (props: RenderTaskPropsType) => {
     const [tasks, setTasks] = useState<Array<TasksPropsType>>(props.tasks);
     const [sort, setSort] = useState<SortPropsType>('all')
 
@@ -26,26 +26,26 @@ export const Task = (props: TaskPropsType) => {
     const checkedTask = (id: string) => {
         let task = tasks.find(t => t.id === id);
 
-        if(task) {
+        if (task) {
             task.isDone = !task.isDone
             setTasks([...tasks])
         }
     }
 
     let sortTasks = tasks;
-    if(sort === 'completed') {
+    if (sort === 'completed') {
         sortTasks = tasks.filter(t => t.isDone)
     }
 
-    if(sort === 'active') {
+    if (sort === 'active') {
         sortTasks = tasks.filter(t => !t.isDone)
     }
 
     return (
         <div className="task__wrapper">
-            <TaskAdd id={props.id} addTask={addTask} tasks={tasks} title={props.title} removeSchedule={props.removeSchedule}/>
-            <TaskNav setSort={setSort} sort={sort} taskLength={tasks.length > 0}/>
-            <TaskList tasks={sortTasks} removeTask={removeTask} checkedTask={checkedTask}/>
+            <AddTask id={props.id} addTask={addTask} tasks={tasks} title={props.title} removeSchedule={props.removeSchedule} />
+            <SortTask setSort={setSort} sort={sort} taskLength={tasks.length > 0} />
+            <ListTask tasks={sortTasks} removeTask={removeTask} checkedTask={checkedTask} />
         </div>
     )
 }
