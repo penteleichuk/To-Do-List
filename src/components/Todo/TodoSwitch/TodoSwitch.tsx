@@ -1,15 +1,25 @@
-import React from "react";
-import { DesignPropsType } from "../../../app/App";
+import { DesignType } from '../../../app/s2-bll/state/appState';
+import { changeTheme } from '../../../app/s2-bll/thunks/thunks';
+import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import './TodoSwitch.css';
 
-export const TodoSwitch = (props: DesignPropsType) => {
-    const styleLight = props.style === 'light' ? "todo-switch__btn todo-switch__light active" : "todo-switch__btn todo-switch__light";
-    const styleDark = props.style === 'dark' ? "todo-switch__btn todo-switch__dark active" : "todo-switch__btn todo-switch__dark";
+type TodoSwitchPropsType = {
+    design: DesignType
+}
 
+export const TodoSwitch = ({ design }: TodoSwitchPropsType) => {
+    const dispatch = useAppDispatch();
+
+    const styleLight = design === 'light' ? "todo-switch__btn todo-switch__light active" : "todo-switch__btn todo-switch__light";
+    const styleDark = design === 'dark' ? "todo-switch__btn todo-switch__dark active" : "todo-switch__btn todo-switch__dark";
+
+    const handleChangeTheme = (theme: DesignType) => {
+        dispatch(changeTheme(theme));
+    }
     return (
         <div className="todo-switch">
-            <span className={styleLight} onClick={() => props.changeStyle('light')}>Light</span>
-            <span className={styleDark} onClick={() => props.changeStyle('dark')}>Dark</span>
+            <span className={styleLight} onClick={() => handleChangeTheme('light')}>Light</span>
+            <span className={styleDark} onClick={() => handleChangeTheme('dark')}>Dark</span>
         </div>
     )
 }

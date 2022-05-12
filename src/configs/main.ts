@@ -1,1 +1,1 @@
-export default () => {};
+export const DEV_VERSION = true;

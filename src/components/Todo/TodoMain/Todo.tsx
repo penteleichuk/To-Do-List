@@ -4,7 +4,7 @@ import { TodoAdd } from "../TodoAdd/TodoAdd";
 import { TodoSwitch } from "../TodoSwitch/TodoSwitch";
 import { Task } from "../../Tasks/TaskMain/Task";
 import './Todo.css'
-import { DesignPropsType } from "../../../app/App";
+import { DesignType } from "../../../app/s2-bll/state/appState";
 
 export type TasksPropsType = {
     id: string
@@ -22,7 +22,11 @@ type TasksListType = {
     [key: string]: Array<TasksPropsType>
 }
 
-export const Todo = (props: DesignPropsType) => {
+type ToDoPropsType = {
+    design: DesignType
+}
+
+export const Todo = ({ design }: ToDoPropsType) => {
     const [schedule, setSchedule] = useState<Array<ToDoListType>>([]);
     const [tasks, setTasks] = useState<TasksListType>({});
 
@@ -52,7 +56,7 @@ export const Todo = (props: DesignPropsType) => {
         <div className="todo">
             <div className='todo__wrapper'>
                 <TodoAdd addSchedule={addSchedule} />
-                <TodoSwitch style={props.style} changeStyle={props.changeStyle} />
+                <TodoSwitch design={design} />
             </div>
 
             <div className='task'>
