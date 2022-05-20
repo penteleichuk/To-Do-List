@@ -1,11 +1,9 @@
 import axios from 'axios';
-import { DEV_VERSION } from '../../configs/main';
-
-export const baseURL = !DEV_VERSION
-	? 'http://localhost:7542/2.0/'
-	: 'https://neko-back.herokuapp.com/2.0/';
 
 export const instance = axios.create({
-	baseURL,
+	baseURL: 'https://social-network.samuraijs.com/api/1.1/',
 	withCredentials: true,
+	headers: {
+		'API-KEY': 'b0f2abba-b87d-4df6-86d7-2c86bde3a1a0',
+	},
 });
