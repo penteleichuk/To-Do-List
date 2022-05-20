@@ -29,7 +29,7 @@ export const toDoApi = {
 	},
 
 	// Change todolists order
-	updateOrderToRo(todolistId: string, putAfterItemId: string) {
+	setOrderToDo(todolistId: string, putAfterItemId: string) {
 		return instance.put<
 			{ putAfterItemId: string },
 			AxiosResponse<ResponseType>
@@ -46,7 +46,7 @@ type ToDoListType = {
 	order: number;
 };
 
-type ResponseType<D = {}> = {
+export type ResponseType<D = {}> = {
 	resultCode: number;
 	messages: string[];
 	fieldsErrors: Array<string>;
