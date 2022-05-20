@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { instance } from '../../../app/s3-dall/instance';
+import { TaskPriorities, TaskStatuses } from '../../../constants/task';
 import { ResponseType } from '../s3-dal/toDoApi';
 
 export const taskApi = {
@@ -57,21 +58,6 @@ type TaskType = {
 	order: number;
 	addedDate: string;
 };
-
-export enum TaskStatuses {
-	New = 0,
-	InProgress = 1,
-	Completed = 2,
-	Draft = 3,
-}
-
-export enum TaskPriorities {
-	Low = 0,
-	Middle = 1,
-	Hi = 2,
-	Urgently = 3,
-	Later = 4,
-}
 
 export type UpdateTaskModelType = {
 	title: string;
