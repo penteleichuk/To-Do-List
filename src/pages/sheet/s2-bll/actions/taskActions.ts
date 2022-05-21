@@ -1,5 +1,3 @@
-type DefaultActionType = {
-	type: 'DEFAULT';
-};
+import { SetToDoListActionType } from './toDoActions';
 
-export type TaskActionsType = DefaultActionType;
+export type TaskActionsType = SetToDoListActionType;

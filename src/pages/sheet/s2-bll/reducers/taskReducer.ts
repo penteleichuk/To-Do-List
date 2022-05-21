@@ -1,13 +1,17 @@
 import { TaskActionsType } from '../actions/taskActions';
-import { TaskInitState, TaskStateType } from '../state/taskInitState';
+import { TaskInitState, TaskListType } from '../state/taskInitState';
 
 export const taskReducer = (
-	state = TaskInitState,
+	state: TaskListType = TaskInitState,
 	action: TaskActionsType
-): TaskStateType => {
+): TaskListType => {
 	switch (action.type) {
+		case 'SET-TODO': {
+			action.toDoLists.forEach(element => (state[element.id] = []));
+			return state;
+		}
 		default: {
-			return { ...state };
+			return state;
 		}
 	}
 };

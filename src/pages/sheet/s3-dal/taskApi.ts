@@ -2,6 +2,7 @@ import { AxiosResponse } from 'axios';
 import { instance } from '../../../app/s3-dall/instance';
 import { TaskPriorities, TaskStatuses } from '../../../constants/task';
 import { ResponseType } from '../s3-dal/toDoApi';
+import { TaskType } from '../s2-bll/state/taskInitState';
 
 export const taskApi = {
 	// Get portion of tasks for todolist
@@ -43,20 +44,6 @@ export const taskApi = {
 			putAfterItemId,
 		});
 	},
-};
-
-type TaskType = {
-	description: string;
-	title: string;
-	completed: string;
-	status: string;
-	priority: string;
-	startDate: string;
-	deadline: string;
-	id: string;
-	todoListId: string;
-	order: number;
-	addedDate: string;
 };
 
 export type UpdateTaskModelType = {

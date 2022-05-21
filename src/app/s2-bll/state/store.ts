@@ -3,11 +3,15 @@ import thunkMiddleware, { ThunkAction } from 'redux-thunk';
 import { DEV_VERSION } from '../../../configs/main';
 import { TaskActionsType } from '../../../pages/sheet/s2-bll/actions/taskActions';
 import { ToDoActionsType } from '../../../pages/sheet/s2-bll/actions/toDoActions';
+import { taskReducer } from '../../../pages/sheet/s2-bll/reducers/taskReducer';
+import { toDoReducer } from '../../../pages/sheet/s2-bll/reducers/toDoReducer';
 import { AppActionsType } from '../actions/appActions';
 import { appReducer } from '../reducers/appReducer';
 
 const reducers = combineReducers({
 	app: appReducer,
+	todo: toDoReducer,
+	task: taskReducer,
 });
 
 export const store = createStore(reducers, applyMiddleware(thunkMiddleware));

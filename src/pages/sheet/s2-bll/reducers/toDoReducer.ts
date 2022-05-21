@@ -1,13 +1,28 @@
-import { ToDoActionsType } from '../actions/toDoActions';
-import { ToDoInitState, ToDoStateType } from '../state/toDoInitState';
+import { Dispatch } from 'react';
+import { toDoApi } from '../../s3-dal/toDoApi';
+import { setToDoList, ToDoActionsType } from '../actions/toDoActions';
+import { ToDoInitState, ToDoInitStateType } from '../state/toDoInitState';
 
 export const toDoReducer = (
-	state = ToDoInitState,
+	state: Array<ToDoInitStateType> = ToDoInitState,
 	action: ToDoActionsType
-): ToDoStateType => {
+): Array<ToDoInitStateType> => {
 	switch (action.type) {
+		case 'SET-TODO': {
+			return action.toDoLists.map(element => ({
+				...element,
+				filter: 'all',
+				entityStatus: 'idle',
+			}));
+		}
 		default: {
-			return { ...state };
+			return state;
 		}
 	}
+};
+
+export const fetchToDo = () => (dispatch: Dispatch<any>) => {
+	toDoApi.getToDoLists().then(res => {
+		dispatch(setToDoList(res.data));
+	});
 };

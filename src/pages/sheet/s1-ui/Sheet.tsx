@@ -1,9 +1,14 @@
-import React, { useState } from "react";
-import { v1 } from "uuid";
+import React, { useEffect, useState } from "react";
 import { DesignType } from "../../../app/s2-bll/state/appState";
 import { ChangeTheme } from "../../../components/changeTheme/ChangeTheme";
 import { AddScheme } from "../../../components/addScheme/AddScheme";
 import { RenderTask } from "../../../components/task/renderTask/RenderTask";
+import { useSelector } from "react-redux";
+import { AppStoreType } from "../../../app/s2-bll/state/store";
+import { ToDoListType } from "../s2-bll/state/toDoInitState";
+import { fetchToDo } from "../s2-bll/reducers/toDoReducer";
+import { useAppDispatch } from "../../../hooks/useAppDispatch";
+import { TaskListType } from "../s2-bll/state/taskInitState";
 import './Sheet.css'
 
 type SheetPropsType = {
@@ -16,25 +21,24 @@ export type TasksPropsType = {
 	isDone: boolean
 }
 
-type ToDoListType = {
-	id: string
-	title: string
-	tasks: Array<TasksPropsType>
-}
-
-type TasksListType = {
-	[key: string]: Array<TasksPropsType>
-}
-
 export const Sheet = React.memo(({ design }: SheetPropsType) => {
+	const dispatch = useAppDispatch();
+
+	const toDoLists = useSelector<AppStoreType, ToDoListType[]>(state => state.todo);
+	let tasks = useSelector<AppStoreType, TaskListType>(state => state.task);
+
+	useEffect(() => {
+		dispatch(fetchToDo());
+	}, [])
 
 	const [schedule, setSchedule] = useState<Array<ToDoListType>>([]);
-	const [tasks, setTasks] = useState<TasksListType>({});
+	//const [tasks, setTasks] = useState<TasksListType>({});
 
-	const addSchedule = (title: string) => setSchedule([
-		{ id: v1(), title: title, tasks: [] },
-		...schedule
-	]);
+	const addSchedule = (title: string) => setSchedule([]);
+	// const addSchedule = (title: string) => setSchedule([
+	// 	{ id: v1(), title: title, tasks: [] },
+	// 	...schedule
+	// ]);
 
 	const removeSchedule = (id: string) => {
 		setSchedule([
@@ -42,15 +46,15 @@ export const Sheet = React.memo(({ design }: SheetPropsType) => {
 		])
 	}
 
-	const addTasks = (scheduleId: string, title: string) => {
-		setTasks({
-			[scheduleId]: [
-				{ id: v1(), isDone: false, title: title },
-				...(tasks[scheduleId] ?? {})
-			],
-			...tasks
-		});
-	}
+	// const addTasks = (scheduleId: string, title: string) => {
+	// 	setTasks({
+	// 		[scheduleId]: [
+	// 			{ id: v1(), isDone: false, title: title },
+	// 			...(tasks[scheduleId] ?? {})
+	// 		],
+	// 		...tasks
+	// 	});
+	// }
 
 	return (
 		<div className="wrapper">
@@ -61,13 +65,8 @@ export const Sheet = React.memo(({ design }: SheetPropsType) => {
 				</div>
 
 				<div className='task'>
-					{schedule.map(t => <RenderTask key={t.id}
-						id={t.id}
-						tasks={t.tasks}
-						title={t.title}
-						removeSchedule={removeSchedule}
-						addTasks={addTasks}
-					/>
+					{toDoLists.map(el =>
+						<RenderTask key={el.id} todo={el} task={tasks[el.id]} removeSchedule={removeSchedule} />
 					)}
 				</div>
 			</div>

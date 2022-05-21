@@ -4,14 +4,14 @@ import { instance } from '../../../app/s3-dall/instance';
 export const toDoApi = {
 	// Get all todolists for authorized user
 	getToDoLists() {
-		return instance.get<ToDoListType[]>('/todo-lists');
+		return instance.get<IResponseToDoList[]>('/todo-lists');
 	},
 
 	// Create new todolist (max todolists count - 10)
 	createToDo(title: string) {
 		return instance.post<
 			{ title: string },
-			AxiosResponse<ResponseType<{ item: ToDoListType }>>
+			AxiosResponse<ResponseType<{ item: IResponseToDoList }>>
 		>('/todo-lists', { title });
 	},
 
@@ -39,16 +39,16 @@ export const toDoApi = {
 	},
 };
 
-type ToDoListType = {
-	id: string;
-	title: string;
-	addedDate: string;
-	order: number;
-};
-
 export type ResponseType<D = {}> = {
 	resultCode: number;
 	messages: string[];
 	fieldsErrors: Array<string>;
 	data: D;
 };
+
+export interface IResponseToDoList {
+	id: string;
+	title: string;
+	addedDate: string;
+	order: number;
+}

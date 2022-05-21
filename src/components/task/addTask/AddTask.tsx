@@ -1,12 +1,12 @@
 import { KeyboardEvent } from 'react'
 import { ChangeEvent, useState } from "react";
-import { TasksPropsType } from '../../../pages/sheet/s1-ui/Sheet';
+import { TaskType } from '../../../pages/sheet/s2-bll/state/taskInitState';
 import './AddTask.css'
 
 type AddTaskPropsType = {
     id: string
     title: string
-    tasks: Array<TasksPropsType>
+    tasks: Array<TaskType>
     addTask: (title: string) => void
     removeSchedule: (id: string) => void
 }
