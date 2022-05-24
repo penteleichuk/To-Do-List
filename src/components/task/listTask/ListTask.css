@@ -1,7 +1,24 @@
+.task-list {
+    height: 200px;
+    overflow: auto;
+    margin: 15px;
+}
+
+.dark .task-list__subtitle {
+    color: #d7d7d7;
+}
+
+.task-list__subtitle {
+    margin-bottom: 10px;
+    font-size: .9rem;
+    letter-spacing: 1.5px;
+    color: #596989;
+}
+
 .task-list__title {
     margin-left: 10px;
     font-size: .9rem;
-    color: #565656;
+    color: #596989;
 }
 
 .dark .task-list__title {
@@ -12,32 +29,47 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 10px 5px;
-    background: #e7e6e6;
-    border-radius: 3px;
+    padding: 0 10px;
+    line-height: 35px;
+    background: #FFFFFF;
+    color: #9FA1F7;
+    border-radius: 14px;
     margin-bottom: 10px;
+    transition: all .5s;
+}
+
+.task-list__item:last-child {
+    margin-bottom: 0;
 }
 
 .dark .task-list__item {
-    background: #2f3c42;
+    background: #2e2e2e;
+    color: #9d9d9d;
 }
 
 .task-list__item:hover {
-    background: #d3d3d3;
+    background: #878af6;
+    color: #fff;
     cursor: pointer;
 }
 
+.task-list__item:hover .task-list__title {
+    color: #fff;
+}
+
 .dark .task-list__item:hover {
-    background: #355862;
+    background: #404040;
+    transition: all .5s;
 }
 
 .task-list__item:hover .task-list__remove {
+    transition: all 1s;
     opacity: 1;
 }
 
-.task-list__item-active {
+/* .task-list__item-active {
     opacity: .5;
-}
+} */
 
 .task-list__item-active .task-list__body {
     text-decoration: line-through;
@@ -45,26 +77,26 @@
 
 .task-list__body {
     display: flex;
-    width: 100%;
+    align-items: center;
+
 }
 
 .task-list__remove {
-    padding: 0 6px;
-    border-radius: 3px;
-    background: #f5b5b5;
-    color: #fff;
+    display: flex;
+    align-items: center;
     opacity: 0;
+    transition: all .5s;
 }
 
-.dark .task-list__remove {
-    background: #54899d;
+.dark .task-list__remove svg {
+    fill: #1f1f1d;
 }
 
-.task-list__remove:hover {
+.task-list__remove svg {
+    fill: #6769cc;
+}
+
+.task-list__remove svg:hover {
     cursor: pointer;
-    background: #d54343;
-}
-
-.dark .task-list__remove:hover {
-    background: #4593b1;
+    fill: #FFFFFF;
 }

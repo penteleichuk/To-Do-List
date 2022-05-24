@@ -16,7 +16,7 @@ export type TaskType = {
 };
 
 export type TaskListType = {
-	[key: string]: Array<TaskType>;
+	[key: string]: TaskType[];
 };
 
 export const TaskInitState: TaskInitStateType = {};

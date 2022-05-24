@@ -1,9 +1,10 @@
 .todo {
-	min-width: 700px;
+	min-width: 900px;
 }
 
 .todo__wrapper {
 	display: flex;
 	flex-direction: row;
 	margin-bottom: 20px;
+	padding: 15px 0;
 }

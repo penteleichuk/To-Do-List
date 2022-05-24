@@ -1,22 +1,39 @@
 import { SortPropsType } from "../renderTask/RenderTask";
+import { FaRegCalendarAlt, FaRegCalendarCheck, FaRegCalendarMinus } from 'react-icons/fa';
 import './SortTask.css'
 
 type SortTaskPropsType = {
-    taskLength: boolean
     setSort: (type: SortPropsType) => void
     sort: SortPropsType
 }
 
-export const SortTask = ({ taskLength, setSort, sort }: SortTaskPropsType) => {
+export const SortTask = ({ setSort, sort }: SortTaskPropsType) => {
     return (
-        <>
-            {
-                taskLength && <div className="task-nav">
-                    <div className={sort === 'all' ? 'task-nav__item task-nav__item-active' : 'task-nav__item'} onClick={() => setSort('all')}>All</div>
-                    <div className={sort === 'active' ? 'task-nav__item task-nav__item-active' : 'task-nav__item'} onClick={() => setSort('active')}>Active</div>
-                    <div className={sort === 'completed' ? 'task-nav__item task-nav__item-active' : 'task-nav__item'} onClick={() => setSort('completed')}>Completed</div>
+        <div className="task-nav">
+            <div className={`task-nav__item ${sort === 'all' ? 'active' : ''}`} onClick={() => setSort('all')}>
+                <div className="task-nav__title">
+                    All
                 </div>
-            }
-        </>
+                <div className="task-nav__icon">
+                    <FaRegCalendarAlt />
+                </div>
+            </div>
+            <div className={`task-nav__item ${sort === 'active' ? 'active' : ''}`} onClick={() => setSort('active')}>
+                <div className="task-nav__title">
+                    Active
+                </div>
+                <div className="task-nav__icon">
+                    <FaRegCalendarCheck />
+                </div>
+            </div>
+            <div className={`task-nav__item ${sort === 'completed' ? 'active' : ''}`} onClick={() => setSort('completed')}>
+                <div className="task-nav__title">
+                    Completed
+                </div>
+                <div className="task-nav__icon">
+                    <FaRegCalendarMinus />
+                </div>
+            </div>
+        </div>
     )
 }

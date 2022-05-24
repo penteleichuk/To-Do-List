@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { LoginPage } from '../../pages/auth/login/s1-ui/LoginPage';
@@ -9,10 +8,6 @@ import './App.css';
 
 function App() {
     const design = useSelector<AppStoreType, DesignType>(state => state.app.theme);
-
-    // useEffect(() => {
-
-    // }, [])
 
     return (
         <div className={design}>

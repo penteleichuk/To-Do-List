@@ -1,16 +1,27 @@
+.dark .task-add {
+    background-color: #1e1f1e;
+}
+
+.task-add {
+  background: #878AF5;
+  padding: 25px 15px;
+}
+
+.task-add__wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
 .task-add__title {
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #e7e6e6;
-    font-weight: 200;
+    font-size: 1.1rem;
+    color: #FCFCFF;
+    letter-spacing: 1.5px;
     position: relative;
     display: block;
+    margin-top: 15px;
 }
 
 .dark .task-add__title {
-    border-bottom: 1px solid #2c2c2c;
     color: #d5d1d1;
 }
 
@@ -19,14 +30,15 @@
 }
 
 .task-add__remove {
-    position: absolute;
-    right: 0;
-    top: -3px;
-    background: #ccc;
-    padding: 3px 8px;
-    border-radius: 3px;
+    display: flex;
+    margin-left: 15px;
+    background-color: #9FA1F7;
+    color: #fff;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 50%;
     font-size: .8rem;
-    display: none;
+    transition: background-color 0.5s ease;
 }
 
 .dark .task-add__remove {
@@ -34,9 +46,9 @@
 }
 
 .task-add__remove:hover {
-    background: #9d9d9d;
-    color: #fff;
+    background-color: #6769cc;
     cursor: pointer;
+    transition: background-color 0.5s ease;
 }
 
 .dark .task-add__remove:hover {
@@ -47,15 +59,17 @@
 .task-add__form {
     display: flex;
     position: relative;
-    margin-bottom: 15px;
+    width: 100%;
 }
 
 .task-add__input {
-    padding: 10px;
+    padding: 8px 10px;
     width: 100%;
     background: #f7f4f4;
-    border: 1px solid #cccccc;
-    border-radius: 3px;
+    color: #34456F;
+    border: none;
+    border-radius: 30px;
+    font-size: .8rem;
 }
 
 .dark .task-add__input {
@@ -70,16 +84,12 @@
 
 .task-add__submit {
     position: absolute;
-    right: 6px;
-    top: 6px;
-    background: #c0e7ac;
-    padding: 0 7px;
-    border-radius: 3px;
-    line-height: 25px;
-    color: #ffffff;
+    right: 10px;
+    top: 8px;
+    color: #6CA678;
 }
 
 .task-add__submit:hover {
     cursor: pointer;
-    background: #85b36d;
+    color: #85b36d;
 }

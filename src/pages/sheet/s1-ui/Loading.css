@@ -1,0 +1,104 @@
+.task-add {
+	position: relative;
+}
+
+.dark .loading.task-add::before {
+	background-color: #373636;
+}
+
+.loading.task-add::before {
+	content: '';
+	position: absolute;
+	z-index: 5;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+
+	background-color: #e2e2e2;
+}
+
+.dark .loading.task-add::after {
+	background: linear-gradient(100deg,
+				rgba(255, 255, 255, 0) 40%,
+				rgb(132 132 132 / 50%) 50%,
+				rgba(255, 255, 255, 0) 60%) #404040;
+	
+		background-size: 200% 100%;
+		background-position-x: 180%;
+		animation: 1s loading ease-in-out infinite;
+}
+
+.loading.task-add::after {
+	content: '';
+	position: absolute;
+	z-index: 10;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 35%;
+	width: 70%;
+
+	border-radius: 8px;
+	background: linear-gradient(100deg,
+			rgba(255, 255, 255, 0) 40%,
+			rgba(255, 255, 255, 0.5) 50%,
+			rgba(255, 255, 255, 0) 60%) #d8d8d8;
+
+	background-size: 200% 100%;
+	background-position-x: 180%;
+	animation: 1s loading ease-in-out infinite;
+}
+
+.dark .loading.task__content::before {
+	background-color: #242424;
+}
+
+.loading.task__content::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+
+	background-color: #ededed;
+}
+
+.dark .loading.task__content::after {
+	background: linear-gradient(100deg,
+			rgba(255, 255, 255, 0) 40%,
+			rgb(132 132 132 / 50%) 50%,
+			rgba(255, 255, 255, 0) 60%) #404040;
+
+	background-size: 200% 100%;
+	background-position-x: 180%;
+	animation: 1s loading ease-in-out infinite;
+}
+
+.loading.task__content::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 80%;
+	width: 70%;
+
+	border-radius: 8px;
+	background-color: #e6e6e6;
+	background: linear-gradient(100deg,
+			rgba(255, 255, 255, 0) 40%,
+			rgba(255, 255, 255, 0.5) 50%,
+			rgba(255, 255, 255, 0) 60%) #e6e6e6;
+
+	background-size: 200% 100%;
+	background-position-x: 180%;
+	animation: 1s loading ease-in-out infinite;
+}
+
+@keyframes loading {
+	to {
+		background-position-x: -20%;
+	}
+}

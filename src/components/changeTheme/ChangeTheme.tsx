@@ -1,13 +1,13 @@
+import { useSelector } from 'react-redux';
 import { DesignType } from '../../app/s2-bll/state/appState';
+import { AppStoreType } from '../../app/s2-bll/state/store';
 import { changeTheme } from '../../app/s2-bll/thunks/thunks';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import './ChangeTheme.css';
 
-type ChangeThemePropsType = {
-    design: DesignType
-}
+export const ChangeTheme = () => {
 
-export const ChangeTheme = ({ design }: ChangeThemePropsType) => {
+    const design = useSelector<AppStoreType, DesignType>(state => state.app.theme);
     const dispatch = useAppDispatch();
 
     const styleLight = design === 'light' ? "todo-switch__btn todo-switch__light active" : "todo-switch__btn todo-switch__light";

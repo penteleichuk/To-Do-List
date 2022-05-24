@@ -1,25 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AddTask } from "../addTask/AddTask";
 import { ListTask } from '../listTask/ListTask';
 import { SortTask } from "../sortTask/SortTask";
 import { TaskStatuses } from "../../../constants/task";
-import './RenderTask.css';
 import { ToDoListType } from "../../../pages/sheet/s2-bll/state/toDoInitState";
-import { TaskType } from "../../../pages/sheet/s2-bll/state/taskInitState";
+import { TaskListType, TaskType } from "../../../pages/sheet/s2-bll/state/taskInitState";
 import { FilterValuesType } from "../../../constants/request";
+import { useSelector } from "react-redux";
+import { AppStoreType } from "../../../app/s2-bll/state/store";
+import { useAppDispatch } from "../../../hooks/useAppDispatch";
+import { fetchTasks } from "../../../pages/sheet/s2-bll/reducers/taskReducer";
+import './RenderTask.css';
 
 type RenderTaskPropsType = {
     todo: ToDoListType;
-    task: TaskType[];
     removeSchedule: (id: string) => void;
 }
 
 export type SortPropsType = 'all' | 'active' | 'completed';
 
-export const RenderTask = ({ todo, task, ...props }: RenderTaskPropsType) => {
+export const RenderTask = ({ todo, removeSchedule }: RenderTaskPropsType) => {
 
-    //const [tasks, setTasks] = useState<TaskType[]>(props.tasks);
-    const [sort, setSort] = useState<SortPropsType>('all')
+    const dispatch = useAppDispatch();
+    useEffect(() => dispatch(fetchTasks(todo.id)), []);
+
+    const tasks = useSelector<AppStoreType, TaskListType>(state => state.task);
+    const [sort, setSort] = useState<SortPropsType>('all');
 
     //const addTask = (title: string) => props.addTasks(props.id, title);
 
@@ -47,13 +53,15 @@ export const RenderTask = ({ todo, task, ...props }: RenderTaskPropsType) => {
         return sortTasks;
     }
 
-    const taskLists = taskSort(task, todo.filter);
+    const taskLists = taskSort(tasks[todo.id], todo.filter);
 
     return (
         <div className="task__wrapper">
-            <AddTask id={todo.id} addTask={() => { }} tasks={taskLists} title={todo.title} removeSchedule={props.removeSchedule} />
-            <SortTask setSort={setSort} sort={sort} taskLength={false} />
-            <ListTask tasks={taskLists} removeTask={() => { }} checkedTask={() => { }} />
+            <AddTask id={todo.id} title={todo.title} removeSchedule={removeSchedule} />
+            <div className="task__content">
+                <SortTask setSort={setSort} sort={sort} />
+                <ListTask tasks={taskLists} removeTask={() => { }} checkedTask={() => { }} />
+            </div>
         </div>
     )
 }
