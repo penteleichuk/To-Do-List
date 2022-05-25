@@ -2,11 +2,11 @@
 	position: relative;
 }
 
-.dark .loading.task-add::before {
+.dark .loading .task-add::before {
 	background-color: #373636;
 }
 
-.loading.task-add::before {
+.loading .task-add::before {
 	content: '';
 	position: absolute;
 	z-index: 5;
@@ -18,7 +18,7 @@
 	background-color: #e2e2e2;
 }
 
-.dark .loading.task-add::after {
+.dark .loading .task-add::after {
 	background: linear-gradient(100deg,
 				rgba(255, 255, 255, 0) 40%,
 				rgb(132 132 132 / 50%) 50%,
@@ -29,7 +29,7 @@
 		animation: 1s loading ease-in-out infinite;
 }
 
-.loading.task-add::after {
+.loading .task-add::after {
 	content: '';
 	position: absolute;
 	z-index: 10;
@@ -50,11 +50,11 @@
 	animation: 1s loading ease-in-out infinite;
 }
 
-.dark .loading.task__content::before {
+.dark .loading .task__content::before {
 	background-color: #242424;
 }
 
-.loading.task__content::before {
+.loading .task__content::before {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -65,7 +65,7 @@
 	background-color: #ededed;
 }
 
-.dark .loading.task__content::after {
+.dark .loading .task__content::after {
 	background: linear-gradient(100deg,
 			rgba(255, 255, 255, 0) 40%,
 			rgb(132 132 132 / 50%) 50%,
@@ -76,7 +76,7 @@
 	animation: 1s loading ease-in-out infinite;
 }
 
-.loading.task__content::after {
+.loading .task__content::after {
 	content: '';
 	position: absolute;
 	top: 50%;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { AddTask } from "../addTask/AddTask";
 import { ListTask } from '../listTask/ListTask';
 import { SortTask } from "../sortTask/SortTask";
@@ -12,33 +12,15 @@ import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { fetchTasks } from "../../../pages/sheet/s2-bll/reducers/taskReducer";
 import './RenderTask.css';
 
-type RenderTaskPropsType = {
-    todo: ToDoListType;
-    removeSchedule: (id: string) => void;
-}
-
 export type SortPropsType = 'all' | 'active' | 'completed';
 
-export const RenderTask = ({ todo, removeSchedule }: RenderTaskPropsType) => {
+export const RenderTask = ({ todo }: { todo: ToDoListType }) => {
 
     const dispatch = useAppDispatch();
     useEffect(() => dispatch(fetchTasks(todo.id)), []);
 
     const tasks = useSelector<AppStoreType, TaskListType>(state => state.task);
-    const [sort, setSort] = useState<SortPropsType>('all');
 
-    //const addTask = (title: string) => props.addTasks(props.id, title);
-
-    //const removeTask = (id: string) => setTasks(tasks.filter(t => t.id !== id));
-
-    // const checkedTask = (id: string) => {
-    //     let task = tasks.find(t => t.id === id);
-
-    //     if (task) {
-    //         //task.completed = !task.completed
-    //         setTasks([...tasks])
-    //     }
-    // }
     const taskSort = (items: TaskType[], filter: FilterValuesType) => {
         let sortTasks = items;
 
@@ -56,11 +38,11 @@ export const RenderTask = ({ todo, removeSchedule }: RenderTaskPropsType) => {
     const taskLists = taskSort(tasks[todo.id], todo.filter);
 
     return (
-        <div className="task__wrapper">
-            <AddTask id={todo.id} title={todo.title} removeSchedule={removeSchedule} />
+        <div className={`task__wrapper ${todo.entityStatus === 'loading' ? 'loading' : ''}`}>
+            <AddTask todoId={todo.id} title={todo.title} />
             <div className="task__content">
-                <SortTask setSort={setSort} sort={sort} />
-                <ListTask tasks={taskLists} removeTask={() => { }} checkedTask={() => { }} />
+                <SortTask todoId={todo.id} filter={todo.filter} />
+                <ListTask tasks={taskLists} />
             </div>
         </div>
     )

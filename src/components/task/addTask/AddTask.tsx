@@ -2,27 +2,27 @@ import { KeyboardEvent } from 'react'
 import { ChangeEvent, useState } from "react";
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { fetchAddTask } from '../../../pages/sheet/s2-bll/reducers/taskReducer';
-import { TaskType } from '../../../pages/sheet/s2-bll/state/taskInitState';
 import { FaCheck, FaTrashAlt } from 'react-icons/fa';
+import { ToDoButton } from '../../EditableButton/ToDoButton';
+import { fetchDeleteTodo } from '../../../pages/sheet/s2-bll/reducers/toDoReducer';
 import './AddTask.css'
 
 type AddTaskPropsType = {
-    id: string
+    todoId: string
     title: string
-    removeSchedule: (id: string) => void
 }
 
-export const AddTask = (props: AddTaskPropsType) => {
+export const AddTask = ({ todoId, title }: AddTaskPropsType) => {
     const dispatch = useAppDispatch();
-    const [title, setTitle] = useState<string>('');
+    const [values, setTitle] = useState<string>('');
 
     const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value);
     }
 
     const onClickHandler = () => {
-        if (title.length > 2) {
-            dispatch(fetchAddTask(props.id, title));
+        if (values.length > 2) {
+            dispatch(fetchAddTask(todoId, values));
             setTitle('');
         }
     }
@@ -33,21 +33,27 @@ export const AddTask = (props: AddTaskPropsType) => {
         }
     }
 
-    const onClickRemoveSchedule = (id: string) => props.removeSchedule(id);
+    const onClickRemoveSchedule = (todoId: string) => {
+        dispatch(fetchDeleteTodo(todoId));
+    };
 
     return (
         <div className="task-add">
             <div className="task-add__wrapper">
                 <div className="task-add__form">
-                    <input type="text" placeholder='Add task...' value={title} onChange={onChangeTitle}
-                        onKeyPress={onKeyPressHandler} className="task-add__input" />
-                    {title.length > 2 && <span className="task-add__submit" onClick={onClickHandler}><FaCheck /></span>}
+                    <input
+                        type="text"
+                        placeholder='Add task...'
+                        value={values}
+                        onChange={onChangeTitle}
+                        onKeyPress={onKeyPressHandler}
+                        className="task-add__input" />
+
+                    {values.length > 2 && <span className="task-add__submit" onClick={onClickHandler}><FaCheck /></span>}
                 </div>
-                <div className='task-add__remove' onClick={() => onClickRemoveSchedule(props.id)}><FaTrashAlt /></div>
+                <div className='task-add__remove' onClick={() => onClickRemoveSchedule(todoId)}><FaTrashAlt /></div>
             </div>
-            <div className="task-add__title">
-                {props.title}
-            </div>
+            <ToDoButton todoId={todoId} title={title} />
         </div>
     )
 }

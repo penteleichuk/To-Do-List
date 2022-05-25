@@ -1,16 +1,24 @@
 import { SortPropsType } from "../renderTask/RenderTask";
 import { FaRegCalendarAlt, FaRegCalendarCheck, FaRegCalendarMinus } from 'react-icons/fa';
 import './SortTask.css'
+import { useAppDispatch } from "../../../hooks/useAppDispatch";
+import { setTodoFiltering } from "../../../pages/sheet/s2-bll/actions/toDoActions";
 
 type SortTaskPropsType = {
-    setSort: (type: SortPropsType) => void
-    sort: SortPropsType
+    todoId: string;
+    filter: SortPropsType;
 }
 
-export const SortTask = ({ setSort, sort }: SortTaskPropsType) => {
+export const SortTask = ({ todoId, filter }: SortTaskPropsType) => {
+    const dispatch = useAppDispatch();
+
+    const filteringHandler = (filter: SortPropsType) => {
+        dispatch(setTodoFiltering(todoId, filter));
+    }
+
     return (
         <div className="task-nav">
-            <div className={`task-nav__item ${sort === 'all' ? 'active' : ''}`} onClick={() => setSort('all')}>
+            <div className={`task-nav__item ${filter === 'all' ? 'active' : ''}`} onClick={() => filteringHandler('all')}>
                 <div className="task-nav__title">
                     All
                 </div>
@@ -18,7 +26,7 @@ export const SortTask = ({ setSort, sort }: SortTaskPropsType) => {
                     <FaRegCalendarAlt />
                 </div>
             </div>
-            <div className={`task-nav__item ${sort === 'active' ? 'active' : ''}`} onClick={() => setSort('active')}>
+            <div className={`task-nav__item ${filter === 'active' ? 'active' : ''}`} onClick={() => filteringHandler('active')}>
                 <div className="task-nav__title">
                     Active
                 </div>
@@ -26,7 +34,7 @@ export const SortTask = ({ setSort, sort }: SortTaskPropsType) => {
                     <FaRegCalendarCheck />
                 </div>
             </div>
-            <div className={`task-nav__item ${sort === 'completed' ? 'active' : ''}`} onClick={() => setSort('completed')}>
+            <div className={`task-nav__item ${filter === 'completed' ? 'active' : ''}`} onClick={() => filteringHandler('completed')}>
                 <div className="task-nav__title">
                     Completed
                 </div>

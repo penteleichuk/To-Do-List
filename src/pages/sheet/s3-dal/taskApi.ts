@@ -22,10 +22,10 @@ export const taskApi = {
 
 	// You should send the complete UpdateTaskModel object even if you update only one property
 	updateTask(todolistId: string, taskId: string, model: UpdateTaskModelType) {
-		return instance.put<UpdateTaskModelType, AxiosResponse<{ item: TaskType }>>(
-			`/todo-lists/${todolistId}/tasks/${taskId}`,
-			{ model }
-		);
+		return instance.put<
+			UpdateTaskModelType,
+			AxiosResponse<ResponseType<{ items: TaskType }>>
+		>(`/todo-lists/${todolistId}/tasks/${taskId}`, model);
 	},
 
 	// Delete task
@@ -47,12 +47,12 @@ export const taskApi = {
 };
 
 export type UpdateTaskModelType = {
-	title: string;
-	description: string;
-	status: TaskStatuses;
-	priority: TaskPriorities;
-	startDate: string;
-	deadline: string;
+	title?: string;
+	description?: string;
+	status?: TaskStatuses;
+	priority?: TaskPriorities;
+	startDate?: string;
+	deadline?: string;
 };
 
 type GetTasksResponse = {

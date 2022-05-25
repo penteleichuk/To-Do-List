@@ -21,6 +21,25 @@
     margin-top: 15px;
 }
 
+.task-add__button {
+    letter-spacing: 1.5px;
+    margin-top: 10px;
+}
+
+.task-add__button input {
+    font-size: 1.1rem;
+    color: #FCFCFF;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    background: transparent;
+}
+
+.task-add__button input:focus-visible, .task-add__button input:focus {
+    outline: none;
+    border: none;
+}
+
 .dark .task-add__title {
     color: #d5d1d1;
 }

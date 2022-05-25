@@ -1,20 +1,20 @@
 import { useState, KeyboardEvent, ChangeEvent } from "react";
 import { TodoAddMessage, TodoAddMessagePropsType } from "./TodoAddMessage";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { fetchAddTodo } from "../../pages/sheet/s2-bll/reducers/toDoReducer";
 import './AddScheme.css';
 
-type TodoAddPropsType = {
-    addSchedule: (title: string) => void
-}
-
-export const AddScheme = ({ addSchedule }: TodoAddPropsType) => {
+export const AddScheme = () => {
     const [title, setTitle] = useState<string>("");
     const [message, setMessage] = useState<TodoAddMessagePropsType>({ type: null, message: null });
+    const dispatch = useAppDispatch();
 
     const onClickAddSchedule = () => {
         if (title.length > 2) {
-            addSchedule(title);
+            dispatch(fetchAddTodo(title));
             setTitle('');
             setMessage({ type: 'success', message: 'Success add!' });
+
         } else {
             setMessage({ type: 'error', message: 'At least 3 characters !' });
         }
