@@ -1,5 +1,9 @@
 import { Dispatch } from 'react';
 import { setAppNotification } from '../../../../app/s2-bll/actions/appActions';
+import {
+	handleNetworkError,
+	handleServerError,
+} from '../../../../utils/error-utils';
 import { toDoApi } from '../../s3-dal/toDoApi';
 import {
 	addTodo,
@@ -58,51 +62,81 @@ export const toDoReducer = (
 };
 
 export const fetchToDo = () => (dispatch: Dispatch<any>) => {
-	toDoApi.getToDoLists().then(res => {
-		if (res.status === 200) {
-			dispatch(setToDoList(res.data));
-		}
-	});
+	toDoApi
+		.getToDoLists()
+		.then(res => {
+			if (res.status === 200) {
+				dispatch(setToDoList(res.data));
+			}
+		})
+		.catch(error => {
+			handleNetworkError(error, dispatch);
+		});
 };
 
 export const fetchToDoSetTitle =
 	(todoId: string, title: string) => (dispatch: Dispatch<any>) => {
 		dispatch(setTodoStatus(todoId, 'loading'));
-		toDoApi.updateToDo(todoId, title).then(res => {
-			if (res.data.resultCode === 0) {
-				dispatch(setTodoTitle(todoId, title));
+		toDoApi
+			.updateToDo(todoId, title)
+			.then(res => {
+				if (res.data.resultCode === 0) {
+					dispatch(setTodoTitle(todoId, title));
+				} else {
+					handleServerError(res.data, dispatch);
+				}
+			})
+			.catch(error => {
+				handleNetworkError(error, dispatch);
+			})
+			.finally(() => {
 				dispatch(setTodoStatus(todoId, 'idle'));
-			}
-		});
+			});
 	};
 
 export const fetchDeleteTodo =
 	(todoId: string) => (dispatch: Dispatch<any>) => {
 		dispatch(setTodoStatus(todoId, 'loading'));
-		toDoApi.deleteToDo(todoId).then(res => {
-			if (res.data.resultCode === 0) {
+		toDoApi
+			.deleteToDo(todoId)
+			.then(res => {
+				if (res.data.resultCode === 0) {
+					dispatch(deleteTodo(todoId));
+					dispatch(
+						setAppNotification({
+							show: true,
+							message: 'Successful removal of the scheme',
+						})
+					);
+				} else {
+					handleServerError(res.data, dispatch);
+				}
+			})
+			.catch(error => {
+				handleNetworkError(error, dispatch);
+			})
+			.finally(() => {
 				dispatch(setTodoStatus(todoId, 'idle'));
-				dispatch(deleteTodo(todoId));
-				dispatch(
-					setAppNotification({
-						show: true,
-						message: 'Successful removal of the scheme',
-					})
-				);
-			}
-		});
+			});
 	};
 
 export const fetchAddTodo = (title: string) => (dispatch: Dispatch<any>) => {
-	toDoApi.createToDo(title).then(res => {
-		if (res.data.resultCode === 0) {
-			dispatch(addTodo(res.data.data.item));
-			dispatch(
-				setAppNotification({
-					show: true,
-					message: 'successful scheme creation',
-				})
-			);
-		}
-	});
+	toDoApi
+		.createToDo(title)
+		.then(res => {
+			if (res.data.resultCode === 0) {
+				dispatch(addTodo(res.data.data.item));
+				dispatch(
+					setAppNotification({
+						show: true,
+						message: 'successful scheme creation',
+					})
+				);
+			} else {
+				handleServerError(res.data, dispatch);
+			}
+		})
+		.catch(error => {
+			handleNetworkError(error, dispatch);
+		});
 };

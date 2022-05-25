@@ -1,6 +1,10 @@
 import { Dispatch } from 'react';
 import { setAppNotification } from '../../../../app/s2-bll/actions/appActions';
 import { AppStoreType } from '../../../../app/s2-bll/state/store';
+import {
+	handleNetworkError,
+	handleServerError,
+} from '../../../../utils/error-utils';
 import { taskApi, UpdateTaskModelType } from '../../s3-dal/taskApi';
 import {
 	addTask,
@@ -66,38 +70,63 @@ export const taskReducer = (
 
 export const fetchTasks = (todoId: string) => (dispatch: Dispatch<any>) => {
 	dispatch(setTodoStatus(todoId, 'loading'));
-	taskApi.getTasks(todoId).then(res => {
-		dispatch(setTasks(todoId, res.data.items));
-		dispatch(setTodoStatus(todoId, 'idle'));
-	});
+	taskApi
+		.getTasks(todoId)
+		.then(res => {
+			dispatch(setTasks(todoId, res.data.items));
+		})
+		.catch(error => {
+			handleNetworkError(error, dispatch);
+		})
+		.finally(() => {
+			dispatch(setTodoStatus(todoId, 'idle'));
+		});
 };
 
 export const fetchAddTask =
 	(todoId: string, title: string) => (dispatch: Dispatch<any>) => {
 		dispatch(setTodoStatus(todoId, 'loading'));
-		taskApi.createTask(todoId, title).then(res => {
-			if (res.data.resultCode === 0) {
-				dispatch(addTask(res.data.data.item));
+		taskApi
+			.createTask(todoId, title)
+			.then(res => {
+				if (res.data.resultCode === 0) {
+					dispatch(addTask(res.data.data.item));
+					dispatch(
+						setAppNotification({
+							show: true,
+							message: 'successful task creation',
+						})
+					);
+				} else {
+					handleServerError(res.data, dispatch);
+				}
+			})
+			.catch(error => {
+				handleNetworkError(error, dispatch);
+			})
+			.finally(() => {
 				dispatch(setTodoStatus(todoId, 'idle'));
-				dispatch(
-					setAppNotification({
-						show: true,
-						message: 'successful task creation',
-					})
-				);
-			}
-		});
+			});
 	};
 
 export const fetchRemoveTask =
 	(todoId: string, taskId: string) => (dispatch: Dispatch<any>) => {
 		dispatch(setTodoStatus(todoId, 'loading'));
-		taskApi.deleteTask(todoId, taskId).then(res => {
-			if (res.data.resultCode === 0) {
-				dispatch(removeTask(todoId, taskId));
+		taskApi
+			.deleteTask(todoId, taskId)
+			.then(res => {
+				if (res.data.resultCode === 0) {
+					dispatch(removeTask(todoId, taskId));
+				} else {
+					handleServerError(res.data, dispatch);
+				}
+			})
+			.catch(error => {
+				handleNetworkError(error, dispatch);
+			})
+			.finally(() => {
 				dispatch(setTodoStatus(todoId, 'idle'));
-			}
-		});
+			});
 	};
 
 export const fetchUpdateTask =
@@ -121,10 +150,19 @@ export const fetchUpdateTask =
 		};
 
 		dispatch(setTodoStatus(todoId, 'loading'));
-		taskApi.updateTask(todoId, taskId, requestModel).then(res => {
-			if (res.data.resultCode === 0) {
-				dispatch(updateTask(todoId, taskId, model));
+		taskApi
+			.updateTask(todoId, taskId, requestModel)
+			.then(res => {
+				if (res.data.resultCode === 0) {
+					dispatch(updateTask(todoId, taskId, model));
+				} else {
+					handleServerError(res.data, dispatch);
+				}
+			})
+			.catch(error => {
+				handleNetworkError(error, dispatch);
+			})
+			.finally(() => {
 				dispatch(setTodoStatus(todoId, 'idle'));
-			}
-		});
+			});
 	};
