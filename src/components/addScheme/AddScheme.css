@@ -25,11 +25,11 @@
 
 .todo-add__submit {
     position: absolute;
-    right: 8px;
+    right: 10px;
     top: 8px;
     background: #c0e7ac;
-    padding: 0 7px;
-    border-radius: 3px;
+    padding: 0 8px;
+    border-radius: 50%;
     line-height: 25px;
     color: #ffffff;
 }

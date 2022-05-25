@@ -1,5 +1,5 @@
 import { TaskType } from "../../../pages/sheet/s2-bll/state/taskInitState";
-import { EditableButton } from "../../EditableButton/EditableButton";
+import { EditableButton } from "../../editableButton/EditableButton";
 import './ListTask.css'
 
 export const ListTask = ({ tasks }: { tasks: Array<TaskType> }) => {

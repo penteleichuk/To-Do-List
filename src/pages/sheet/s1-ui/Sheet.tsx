@@ -8,6 +8,7 @@ import { ToDoListType } from "../s2-bll/state/toDoInitState";
 import { fetchToDo } from "../s2-bll/reducers/toDoReducer";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { initAppTheme } from "../../../app/s2-bll/reducers/appReducer";
+import { Notification } from "./../../../components/notification/Notification"
 import './Sheet.css'
 import './Header.css'
 import './Loading.css'
@@ -34,6 +35,7 @@ export const Sheet = React.memo(() => {
 					{toDoLists.map(el => <RenderTask key={el.id} todo={el} />)}
 				</div>
 			</div>
+			<Notification />
 		</div>
 	);
 });

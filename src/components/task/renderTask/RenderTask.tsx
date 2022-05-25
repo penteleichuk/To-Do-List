@@ -10,16 +10,16 @@ import { useSelector } from "react-redux";
 import { AppStoreType } from "../../../app/s2-bll/state/store";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { fetchTasks } from "../../../pages/sheet/s2-bll/reducers/taskReducer";
+import { Progress } from "../../progress/Progress";
 import './RenderTask.css';
 
 export type SortPropsType = 'all' | 'active' | 'completed';
 
 export const RenderTask = ({ todo }: { todo: ToDoListType }) => {
-
-    const dispatch = useAppDispatch();
-    useEffect(() => dispatch(fetchTasks(todo.id)), []);
-
     const tasks = useSelector<AppStoreType, TaskListType>(state => state.task);
+    const dispatch = useAppDispatch();
+
+    useEffect(() => dispatch(fetchTasks(todo.id)), []);
 
     const taskSort = (items: TaskType[], filter: FilterValuesType) => {
         let sortTasks = items;
@@ -38,9 +38,10 @@ export const RenderTask = ({ todo }: { todo: ToDoListType }) => {
     const taskLists = taskSort(tasks[todo.id], todo.filter);
 
     return (
-        <div className={`task__wrapper ${todo.entityStatus === 'loading' ? 'loading' : ''}`}>
+        <div className={`task__wrapper ${todo.entityStatus === 'init' ? 'loading' : ''}`}>
             <AddTask todoId={todo.id} title={todo.title} />
             <div className="task__content">
+                <Progress enabled={todo.entityStatus === 'loading' && taskLists.length > 0} />
                 <SortTask todoId={todo.id} filter={todo.filter} />
                 <ListTask tasks={taskLists} />
             </div>

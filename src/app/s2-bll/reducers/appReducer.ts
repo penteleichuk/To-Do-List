@@ -1,4 +1,4 @@
-import { Dispatch, useEffect } from 'react';
+import { Dispatch } from 'react';
 import { AppActionsType, setAppTheme } from '../actions/appActions';
 import { AppInitState, AppStateType, DesignType } from '../state/appState';
 
@@ -9,6 +9,12 @@ export const appReducer = (
 	switch (action.type) {
 		case 'app/SET_APP_THEME': {
 			return { ...state, theme: action.theme };
+		}
+		case 'SET-NOTIFICATION-APP': {
+			return {
+				...state,
+				notification: { ...action.payload },
+			};
 		}
 		default: {
 			return state;

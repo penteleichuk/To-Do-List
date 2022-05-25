@@ -3,7 +3,7 @@ import { ChangeEvent, useState } from "react";
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { fetchAddTask } from '../../../pages/sheet/s2-bll/reducers/taskReducer';
 import { FaCheck, FaTrashAlt } from 'react-icons/fa';
-import { ToDoButton } from '../../EditableButton/ToDoButton';
+import { ToDoButton } from '../../editableButton/ToDoButton';
 import { fetchDeleteTodo } from '../../../pages/sheet/s2-bll/reducers/toDoReducer';
 import './AddTask.css'
 

@@ -1,4 +1,5 @@
 import { Dispatch } from 'react';
+import { setAppNotification } from '../../../../app/s2-bll/actions/appActions';
 import { AppStoreType } from '../../../../app/s2-bll/state/store';
 import { taskApi, UpdateTaskModelType } from '../../s3-dal/taskApi';
 import {
@@ -64,6 +65,7 @@ export const taskReducer = (
 };
 
 export const fetchTasks = (todoId: string) => (dispatch: Dispatch<any>) => {
+	dispatch(setTodoStatus(todoId, 'loading'));
 	taskApi.getTasks(todoId).then(res => {
 		dispatch(setTasks(todoId, res.data.items));
 		dispatch(setTodoStatus(todoId, 'idle'));
@@ -72,18 +74,28 @@ export const fetchTasks = (todoId: string) => (dispatch: Dispatch<any>) => {
 
 export const fetchAddTask =
 	(todoId: string, title: string) => (dispatch: Dispatch<any>) => {
+		dispatch(setTodoStatus(todoId, 'loading'));
 		taskApi.createTask(todoId, title).then(res => {
 			if (res.data.resultCode === 0) {
 				dispatch(addTask(res.data.data.item));
+				dispatch(setTodoStatus(todoId, 'idle'));
+				dispatch(
+					setAppNotification({
+						show: true,
+						message: 'successful task creation',
+					})
+				);
 			}
 		});
 	};
 
 export const fetchRemoveTask =
 	(todoId: string, taskId: string) => (dispatch: Dispatch<any>) => {
+		dispatch(setTodoStatus(todoId, 'loading'));
 		taskApi.deleteTask(todoId, taskId).then(res => {
 			if (res.data.resultCode === 0) {
 				dispatch(removeTask(todoId, taskId));
+				dispatch(setTodoStatus(todoId, 'idle'));
 			}
 		});
 	};
@@ -108,9 +120,11 @@ export const fetchUpdateTask =
 			...model,
 		};
 
+		dispatch(setTodoStatus(todoId, 'loading'));
 		taskApi.updateTask(todoId, taskId, requestModel).then(res => {
 			if (res.data.resultCode === 0) {
 				dispatch(updateTask(todoId, taskId, model));
+				dispatch(setTodoStatus(todoId, 'idle'));
 			}
 		});
 	};
