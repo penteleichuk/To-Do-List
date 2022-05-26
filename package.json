@@ -2,6 +2,7 @@
   "name": "todo-myy",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://vasyok28.github.io/To-Do-List/",
   "dependencies": {
     "axios": "^0.27.2",
     "react": "^18.1.0",
