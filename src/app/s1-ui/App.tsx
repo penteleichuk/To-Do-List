@@ -6,6 +6,8 @@ import { DesignType } from '../s2-bll/state/appState';
 import { AppStoreType } from '../s2-bll/state/store';
 import './App.css';
 
+
+
 function App() {
     const design = useSelector<AppStoreType, DesignType>(state => state.app.theme);
     return (
