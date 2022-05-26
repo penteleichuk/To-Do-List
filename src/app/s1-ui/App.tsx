@@ -11,9 +11,9 @@ function App() {
     return (
         <div className={design}>
             <Routes>
-                <Route path='/' element={<SheetPage />} />
-                <Route path='login' element={<LoginPage />} />
-                <Route path='*' element={<div>Error</div>} />
+                <Route path='*' element={<SheetPage />} />
+                {/* <Route path='login' element={<LoginPage />} />
+                <Route path='*' element={<div>Error</div>} /> */}
             </Routes>
         </div>
     );
