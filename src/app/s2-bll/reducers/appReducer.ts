@@ -1,6 +1,7 @@
-import { Dispatch } from 'react';
+import { Dispatch } from 'redux';
 import { AppActionsType, setAppTheme } from '../actions/appActions';
 import { AppInitState, AppStateType, DesignType } from '../state/appState';
+import { AppActionType, AppThunk } from '../state/store';
 
 export const appReducer = (
 	state: AppStateType = AppInitState,
@@ -26,7 +27,7 @@ export const appReducer = (
 	}
 };
 
-export const initAppTheme = () => (dispatch: Dispatch<any>) => {
+export const initAppTheme = (): AppThunk => dispatch => {
 	const getStorageTheme = localStorage.getItem('theme');
 	if (getStorageTheme) {
 		dispatch(setAppTheme(JSON.parse(getStorageTheme)));
@@ -34,7 +35,8 @@ export const initAppTheme = () => (dispatch: Dispatch<any>) => {
 };
 
 export const changeAppTheme =
-	(theme: DesignType) => (dispatch: Dispatch<any>) => {
+	(theme: DesignType): AppThunk =>
+	dispatch => {
 		localStorage.setItem('theme', JSON.stringify(theme));
 		dispatch(setAppTheme(theme));
 	};

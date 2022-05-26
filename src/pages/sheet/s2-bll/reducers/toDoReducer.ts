@@ -1,5 +1,6 @@
-import { Dispatch } from 'react';
+import { Dispatch } from 'redux';
 import { setAppNotification } from '../../../../app/s2-bll/actions/appActions';
+import { AppActionType, AppThunk } from '../../../../app/s2-bll/state/store';
 import {
 	handleNetworkError,
 	handleServerError,
@@ -61,7 +62,7 @@ export const toDoReducer = (
 	}
 };
 
-export const fetchToDo = () => async (dispatch: Dispatch<any>) => {
+export const fetchToDo = (): AppThunk => async dispatch => {
 	try {
 		const res = await toDoApi.getToDoLists();
 		if (res.status === 200) {
@@ -74,7 +75,8 @@ export const fetchToDo = () => async (dispatch: Dispatch<any>) => {
 };
 
 export const fetchToDoSetTitle =
-	(todoId: string, title: string) => (dispatch: Dispatch<any>) => {
+	(todoId: string, title: string): AppThunk =>
+	dispatch => {
 		dispatch(setTodoStatus(todoId, 'loading'));
 		toDoApi
 			.updateToDo(todoId, title)
@@ -94,7 +96,8 @@ export const fetchToDoSetTitle =
 	};
 
 export const fetchDeleteTodo =
-	(todoId: string) => (dispatch: Dispatch<any>) => {
+	(todoId: string): AppThunk =>
+	dispatch => {
 		dispatch(setTodoStatus(todoId, 'loading'));
 		toDoApi
 			.deleteToDo(todoId)
@@ -119,23 +122,25 @@ export const fetchDeleteTodo =
 			});
 	};
 
-export const fetchAddTodo = (title: string) => (dispatch: Dispatch<any>) => {
-	toDoApi
-		.createToDo(title)
-		.then(res => {
-			if (res.data.resultCode === 0) {
-				dispatch(addTodo(res.data.data.item));
-				dispatch(
-					setAppNotification({
-						show: true,
-						message: 'successful scheme creation',
-					})
-				);
-			} else {
-				handleServerError(res.data, dispatch);
-			}
-		})
-		.catch(error => {
-			handleNetworkError(error, dispatch);
-		});
-};
+export const fetchAddTodo =
+	(title: string): AppThunk =>
+	dispatch => {
+		toDoApi
+			.createToDo(title)
+			.then(res => {
+				if (res.data.resultCode === 0) {
+					dispatch(addTodo(res.data.data.item));
+					dispatch(
+						setAppNotification({
+							show: true,
+							message: 'successful scheme creation',
+						})
+					);
+				} else {
+					handleServerError(res.data, dispatch);
+				}
+			})
+			.catch(error => {
+				handleNetworkError(error, dispatch);
+			});
+	};

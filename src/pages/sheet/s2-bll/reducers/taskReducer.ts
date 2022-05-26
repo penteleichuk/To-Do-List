@@ -1,6 +1,10 @@
-import { Dispatch } from 'react';
+import { Dispatch } from 'redux';
 import { setAppNotification } from '../../../../app/s2-bll/actions/appActions';
-import { AppStoreType } from '../../../../app/s2-bll/state/store';
+import {
+	AppActionType,
+	AppStoreType,
+	AppThunk,
+} from '../../../../app/s2-bll/state/store';
 import {
 	handleNetworkError,
 	handleServerError,
@@ -68,23 +72,26 @@ export const taskReducer = (
 	}
 };
 
-export const fetchTasks = (todoId: string) => (dispatch: Dispatch<any>) => {
-	dispatch(setTodoStatus(todoId, 'loading'));
-	taskApi
-		.getTasks(todoId)
-		.then(res => {
-			dispatch(setTasks(todoId, res.data.items));
-		})
-		.catch(error => {
-			handleNetworkError(error, dispatch);
-		})
-		.finally(() => {
-			dispatch(setTodoStatus(todoId, 'idle'));
-		});
-};
+export const fetchTasks =
+	(todoId: string): AppThunk =>
+	dispatch => {
+		dispatch(setTodoStatus(todoId, 'loading'));
+		taskApi
+			.getTasks(todoId)
+			.then(res => {
+				dispatch(setTasks(todoId, res.data.items));
+			})
+			.catch(error => {
+				handleNetworkError(error, dispatch);
+			})
+			.finally(() => {
+				dispatch(setTodoStatus(todoId, 'idle'));
+			});
+	};
 
 export const fetchAddTask =
-	(todoId: string, title: string) => (dispatch: Dispatch<any>) => {
+	(todoId: string, title: string): AppThunk =>
+	dispatch => {
 		dispatch(setTodoStatus(todoId, 'loading'));
 		taskApi
 			.createTask(todoId, title)
@@ -110,7 +117,8 @@ export const fetchAddTask =
 	};
 
 export const fetchRemoveTask =
-	(todoId: string, taskId: string) => (dispatch: Dispatch<any>) => {
+	(todoId: string, taskId: string): AppThunk =>
+	dispatch => {
 		dispatch(setTodoStatus(todoId, 'loading'));
 		taskApi
 			.deleteTask(todoId, taskId)
@@ -130,8 +138,8 @@ export const fetchRemoveTask =
 	};
 
 export const fetchUpdateTask =
-	(todoId: string, taskId: string, model: UpdateTaskModelType) =>
-	(dispatch: Dispatch<any>, getState: () => AppStoreType) => {
+	(todoId: string, taskId: string, model: UpdateTaskModelType): AppThunk =>
+	(dispatch, getState: () => AppStoreType) => {
 		const state = getState();
 		const task = state.task[todoId].find(el => el.id === taskId);
 
