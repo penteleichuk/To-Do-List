@@ -1,3 +1,4 @@
+import React from "react";
 import { ChangeEvent, useState } from "react";
 import { FaRegCheckCircle, FaRegCircle, FaTimesCircle } from "react-icons/fa";
 import { TaskStatuses } from "../../constants/task";
@@ -5,7 +6,7 @@ import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { fetchRemoveTask, fetchUpdateTask } from "../../pages/sheet/s2-bll/reducers/taskReducer";
 import { TaskType } from "../../pages/sheet/s2-bll/state/taskInitState";
 
-export const EditableButton = ({ task }: { task: TaskType }) => {
+export const EditableButton = React.memo(({ task }: { task: TaskType }) => {
 	const [title, setTitle] = useState<string>('');
 	const [isEditableTitle, setIsEditableTitle] = useState<boolean>(false);
 
@@ -56,4 +57,4 @@ export const EditableButton = ({ task }: { task: TaskType }) => {
 			</div>
 		}
 	</div>
-}
+});

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { changeAppTheme } from '../../app/s2-bll/reducers/appReducer';
 import { DesignType } from '../../app/s2-bll/state/appState';
@@ -5,7 +6,7 @@ import { AppStoreType } from '../../app/s2-bll/state/store';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import './ChangeTheme.css';
 
-export const ChangeTheme = () => {
+export const ChangeTheme = React.memo(() => {
 
     const design = useSelector<AppStoreType, DesignType>(state => state.app.theme);
     const dispatch = useAppDispatch();
@@ -22,4 +23,4 @@ export const ChangeTheme = () => {
             <span className={styleDark} onClick={() => changeThemeHandle('dark')}>Dark</span>
         </div>
     )
-}
+});

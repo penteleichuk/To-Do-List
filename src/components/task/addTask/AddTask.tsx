@@ -6,13 +6,14 @@ import { FaCheck, FaTrashAlt } from 'react-icons/fa';
 import { ToDoButton } from '../../editableButton/ToDoButton';
 import { fetchDeleteTodo } from '../../../pages/sheet/s2-bll/reducers/toDoReducer';
 import './AddTask.css'
+import React from 'react';
 
 type AddTaskPropsType = {
     todoId: string
     title: string
 }
 
-export const AddTask = ({ todoId, title }: AddTaskPropsType) => {
+export const AddTask = React.memo(({ todoId, title }: AddTaskPropsType) => {
     const dispatch = useAppDispatch();
     const [values, setTitle] = useState<string>('');
 
@@ -56,4 +57,4 @@ export const AddTask = ({ todoId, title }: AddTaskPropsType) => {
             <ToDoButton todoId={todoId} title={title} />
         </div>
     )
-}
+});

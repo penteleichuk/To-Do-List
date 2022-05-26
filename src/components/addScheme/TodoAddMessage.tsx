@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect } from "react";
 
 export type TodoAddMessagePropsType = {
@@ -6,7 +7,7 @@ export type TodoAddMessagePropsType = {
     setMessage?: any
 }
 
-export const TodoAddMessage = ({ message, type, setMessage }: TodoAddMessagePropsType) => {
+export const TodoAddMessage = React.memo(({ message, type, setMessage }: TodoAddMessagePropsType) => {
     useEffect(() => {
         const timer = setTimeout(() => setMessage({ type: null, message: null }), 1500);
         return () => clearTimeout(timer);
@@ -23,4 +24,4 @@ export const TodoAddMessage = ({ message, type, setMessage }: TodoAddMessageProp
     return (
         <div className={classNameMessage}>{message}</div>
     )
-}
+})

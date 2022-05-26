@@ -1,3 +1,4 @@
+import React from "react";
 import { ChangeEvent, useState } from "react"
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { fetchToDoSetTitle } from "../../pages/sheet/s2-bll/reducers/toDoReducer";
@@ -7,7 +8,7 @@ type ToDoButtonPropsType = {
 	title: string;
 }
 
-export const ToDoButton = ({ todoId, title }: ToDoButtonPropsType) => {
+export const ToDoButton = React.memo(({ todoId, title }: ToDoButtonPropsType) => {
 	const [text, setText] = useState<string>('');
 	const [isEditableTitle, setIsEditableTitle] = useState<boolean>(false);
 	const dispatch = useAppDispatch();
@@ -36,4 +37,4 @@ export const ToDoButton = ({ todoId, title }: ToDoButtonPropsType) => {
 			</div>
 		}
 	</>
-}
+});

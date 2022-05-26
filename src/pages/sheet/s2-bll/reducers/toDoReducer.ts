@@ -61,17 +61,16 @@ export const toDoReducer = (
 	}
 };
 
-export const fetchToDo = () => (dispatch: Dispatch<any>) => {
-	toDoApi
-		.getToDoLists()
-		.then(res => {
-			if (res.status === 200) {
-				dispatch(setToDoList(res.data));
-			}
-		})
-		.catch(error => {
-			handleNetworkError(error, dispatch);
-		});
+export const fetchToDo = () => async (dispatch: Dispatch<any>) => {
+	try {
+		const res = await toDoApi.getToDoLists();
+		if (res.status === 200) {
+			dispatch(setToDoList(res.data));
+		}
+		return res;
+	} catch (error: any) {
+		handleNetworkError(error, dispatch);
+	}
 };
 
 export const fetchToDoSetTitle =

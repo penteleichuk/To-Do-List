@@ -1,11 +1,11 @@
+import React from "react";
 import { useEffect } from "react";
 import { AddTask } from "../addTask/AddTask";
 import { ListTask } from '../listTask/ListTask';
 import { SortTask } from "../sortTask/SortTask";
 import { TaskStatuses } from "../../../constants/task";
 import { ToDoListType } from "../../../pages/sheet/s2-bll/state/toDoInitState";
-import { TaskListType, TaskType } from "../../../pages/sheet/s2-bll/state/taskInitState";
-import { FilterValuesType } from "../../../constants/request";
+import { TaskListType } from "../../../pages/sheet/s2-bll/state/taskInitState";
 import { useSelector } from "react-redux";
 import { AppStoreType } from "../../../app/s2-bll/state/store";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
@@ -15,36 +15,31 @@ import './RenderTask.css';
 
 export type SortPropsType = 'all' | 'active' | 'completed';
 
-export const RenderTask = ({ todo }: { todo: ToDoListType }) => {
+export const RenderTask = React.memo(({ todo }: { todo: ToDoListType }) => {
+
     const tasks = useSelector<AppStoreType, TaskListType>(state => state.task);
     const dispatch = useAppDispatch();
 
     useEffect(() => dispatch(fetchTasks(todo.id)), []);
 
-    const taskSort = (items: TaskType[], filter: FilterValuesType) => {
-        let sortTasks = items;
+    let sortTasks = tasks[todo.id];
 
-        if (filter === 'completed') {
-            sortTasks = items.filter(t => t.status === TaskStatuses.Completed)
-        }
-
-        if (filter === 'active') {
-            sortTasks = items.filter(t => t.status === TaskStatuses.New)
-        }
-
-        return sortTasks;
+    if (todo.filter === 'completed') {
+        sortTasks = tasks[todo.id].filter(t => t.status === TaskStatuses.Completed)
     }
 
-    const taskLists = taskSort(tasks[todo.id], todo.filter);
+    if (todo.filter === 'active') {
+        sortTasks = tasks[todo.id].filter(t => t.status === TaskStatuses.New)
+    }
 
     return (
-        <div className={`task__wrapper ${todo.entityStatus === 'init' ? 'loading' : ''}`}>
+        <div className={`task__wrapper ${(todo.entityStatus === 'loading' && !tasks[todo.id].length) ? 'loading' : ''}`}>
             <AddTask todoId={todo.id} title={todo.title} />
             <div className="task__content">
-                <Progress enabled={todo.entityStatus === 'loading' && taskLists.length > 0} />
+                <Progress enabled={todo.entityStatus === 'loading' && tasks[todo.id].length > 0} />
                 <SortTask todoId={todo.id} filter={todo.filter} />
-                <ListTask tasks={taskLists} />
+                <ListTask tasks={sortTasks} />
             </div>
         </div>
     )
-}
+});

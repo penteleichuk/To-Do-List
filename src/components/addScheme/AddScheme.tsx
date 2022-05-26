@@ -3,8 +3,9 @@ import { TodoAddMessage, TodoAddMessagePropsType } from "./TodoAddMessage";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { fetchAddTodo } from "../../pages/sheet/s2-bll/reducers/toDoReducer";
 import './AddScheme.css';
+import React from "react";
 
-export const AddScheme = () => {
+export const AddScheme = React.memo(() => {
     const [title, setTitle] = useState<string>("");
     const [message, setMessage] = useState<TodoAddMessagePropsType>({ type: null, message: null });
     const dispatch = useAppDispatch();
@@ -38,4 +39,4 @@ export const AddScheme = () => {
             {title.length > 2 && <span className="todo-add__submit" onClick={onClickAddSchedule}>+</span>}
         </div>
     )
-}
+});

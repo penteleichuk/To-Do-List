@@ -1,4 +1,7 @@
 import { useDispatch } from 'react-redux';
-// import { AppDispatch } from '../app/s2-bll/state/store';
+import { ThunkDispatch } from 'redux-thunk';
+import { AppActionType, AppRootStateType } from '../app/s2-bll/state/store';
 
-export const useAppDispatch = () => useDispatch<any>();
+export type TypedDispatch = ThunkDispatch<AppRootStateType, any, AppActionType>;
+
+export const useAppDispatch = () => useDispatch<TypedDispatch>();

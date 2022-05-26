@@ -8,14 +8,18 @@ export const appReducer = (
 ): AppStateType => {
 	switch (action.type) {
 		case 'app/SET_APP_THEME': {
-			return { ...state, theme: action.theme };
+			if (action.theme !== state.theme)
+				return { ...state, theme: action.theme };
+			else return state;
 		}
+
 		case 'SET-NOTIFICATION-APP': {
 			return {
 				...state,
 				notification: { ...action.payload },
 			};
 		}
+
 		default: {
 			return state;
 		}
@@ -24,7 +28,6 @@ export const appReducer = (
 
 export const initAppTheme = () => (dispatch: Dispatch<any>) => {
 	const getStorageTheme = localStorage.getItem('theme');
-
 	if (getStorageTheme) {
 		dispatch(setAppTheme(JSON.parse(getStorageTheme)));
 	}

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { setAppNotification } from '../../app/s2-bll/actions/appActions';
@@ -6,7 +7,7 @@ import { AppStoreType } from '../../app/s2-bll/state/store';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import './Notification.css';
 
-export const Notification = () => {
+export const Notification = React.memo(() => {
 	const dispatch = useAppDispatch();
 	const notification = useSelector<AppStoreType, NotificationType>(state => state.app.notification);
 
@@ -29,4 +30,4 @@ export const Notification = () => {
 			</div>
 		}
 	</>
-}
+});

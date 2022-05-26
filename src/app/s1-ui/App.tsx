@@ -8,7 +8,6 @@ import './App.css';
 
 function App() {
     const design = useSelector<AppStoreType, DesignType>(state => state.app.theme);
-
     return (
         <div className={design}>
             <Routes>

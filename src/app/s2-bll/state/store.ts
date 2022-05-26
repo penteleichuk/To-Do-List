@@ -1,5 +1,6 @@
+import { useDispatch } from 'react-redux';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
-import thunkMiddleware, { ThunkAction } from 'redux-thunk';
+import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { DEV_VERSION } from '../../../configs/main';
 import { TaskActionsType } from '../../../pages/sheet/s2-bll/actions/taskActions';
 import { ToDoActionsType } from '../../../pages/sheet/s2-bll/actions/toDoActions';
@@ -32,6 +33,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<
 	unknown,
 	AppActionType
 >;
+export type AppRootStateType = ReturnType<typeof reducers>;
 
 if (DEV_VERSION) {
 	// @ts-ignore
