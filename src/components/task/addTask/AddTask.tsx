@@ -1,12 +1,12 @@
 import { KeyboardEvent } from 'react'
 import { ChangeEvent, useState } from "react";
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
-import { fetchAddTask } from '../../../pages/sheet/s2-bll/reducers/taskReducer';
 import { FaCheck, FaTrashAlt } from 'react-icons/fa';
 import { ToDoButton } from '../../editableButton/ToDoButton';
-import { fetchDeleteTodo } from '../../../pages/sheet/s2-bll/reducers/toDoReducer';
-import './AddTask.css'
 import React from 'react';
+import { fetchAddTask } from '../../../pages/sheet/s2-bll/thunks/taskThunks';
+import { fetchDeleteTodo } from '../../../pages/sheet/s2-bll/thunks/toDoThunks';
+import './AddTask.css'
 
 type AddTaskPropsType = {
     todoId: string

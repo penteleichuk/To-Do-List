@@ -1,9 +1,9 @@
 import { useState, KeyboardEvent, ChangeEvent } from "react";
 import { TodoAddMessage, TodoAddMessagePropsType } from "./TodoAddMessage";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { fetchAddTodo } from "../../pages/sheet/s2-bll/reducers/toDoReducer";
-import './AddScheme.css';
 import React from "react";
+import { fetchAddTodo } from "../../pages/sheet/s2-bll/thunks/toDoThunks";
+import './AddScheme.css';
 
 export const AddScheme = React.memo(() => {
     const [title, setTitle] = useState<string>("");

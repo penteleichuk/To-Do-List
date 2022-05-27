@@ -1,7 +1,7 @@
 import React from "react";
 import { ChangeEvent, useState } from "react"
 import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { fetchToDoSetTitle } from "../../pages/sheet/s2-bll/reducers/toDoReducer";
+import { fetchToDoSetTitle } from "../../pages/sheet/s2-bll/thunks/toDoThunks";
 
 type ToDoButtonPropsType = {
 	todoId: string;

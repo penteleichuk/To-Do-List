@@ -29,17 +29,3 @@ export const appReducer = (
 		}
 	}
 };
-
-export const initAppTheme = (): AppThunk => dispatch => {
-	const getStorageTheme = localStorage.getItem('theme');
-	if (getStorageTheme) {
-		dispatch(setAppTheme(JSON.parse(getStorageTheme)));
-	}
-};
-
-export const changeAppTheme =
-	(theme: DesignType): AppThunk =>
-	dispatch => {
-		localStorage.setItem('theme', JSON.stringify(theme));
-		dispatch(setAppTheme(theme));
-	};

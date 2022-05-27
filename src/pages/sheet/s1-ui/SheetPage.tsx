@@ -5,10 +5,10 @@ import { RenderTask } from "../../../components/task/renderTask/RenderTask";
 import { useSelector } from "react-redux";
 import { AppStoreType } from "../../../app/s2-bll/state/store";
 import { ToDoListType } from "../s2-bll/state/toDoInitState";
-import { fetchToDo } from "../s2-bll/reducers/toDoReducer";
 import { Notification } from "./../../../components/notification/Notification"
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { Navigate } from "react-router-dom";
+import { fetchToDo } from "../s2-bll/thunks/toDoThunks";
 import './Sheet.css'
 import './Header.css'
 import './Loading.css'

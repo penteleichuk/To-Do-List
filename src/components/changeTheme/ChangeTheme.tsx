@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { changeAppTheme } from '../../app/s2-bll/reducers/appReducer';
 import { DesignType } from '../../app/s2-bll/state/appState';
 import { AppStoreType } from '../../app/s2-bll/state/store';
+import { changeAppTheme } from '../../app/s2-bll/thunks/thunks';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import './ChangeTheme.css';
 

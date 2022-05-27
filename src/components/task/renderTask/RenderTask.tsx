@@ -9,8 +9,8 @@ import { TaskListType } from "../../../pages/sheet/s2-bll/state/taskInitState";
 import { useSelector } from "react-redux";
 import { AppStoreType } from "../../../app/s2-bll/state/store";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
-import { fetchTasks } from "../../../pages/sheet/s2-bll/reducers/taskReducer";
 import { Progress } from "../../progress/Progress";
+import { fetchTasks } from "../../../pages/sheet/s2-bll/thunks/taskThunks";
 import './RenderTask.css';
 
 export type SortPropsType = 'all' | 'active' | 'completed';
