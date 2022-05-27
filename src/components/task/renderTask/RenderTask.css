@@ -24,3 +24,21 @@
     background: #242424;
     border: 1px solid #404040;
 }
+
+@media (max-width: 900px) { 
+    .todo {
+        min-width: auto !important;
+    }
+}
+
+@media (max-width: 760px) {
+    .task {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .task {
+        grid-template-columns: 1fr;
+    }
+}
