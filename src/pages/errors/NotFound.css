@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Fontdiner+Swanky&family=Roboto:wght@500&display=swap");
+
+.not-found {
+	background: linear-gradient(to right, white 50%, #383838 50%) !important;
+	font-family: "Roboto", sans-serif;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 1.5;
+	color: white;
+	position: absolute;
+	width: 100%;
+}
+
+.not-found__wrapper {
+	display: flex;
+	align-items: center;
+	height: 100vh;
+	max-width: 1000px;
+	width: calc(100% - 4rem);
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.not-found__wrapper>* {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	max-width: 500px;
+	width: 100%;
+	padding: 2.5rem;
+}
+
+.not-found__side {
+	background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/4424790/right-edges.png");
+	background-position: top right;
+	background-repeat: no-repeat;
+	background-size: 25px 100%;
+}
+
+.not-found__side img {
+	display: block;
+	height: auto;
+	width: 100%;
+}
+
+.not-found__main {
+	text-align: center;
+}
+
+.not-found__main h1 {
+	font-family: "Fontdiner Swanky", cursive;
+	font-size: 4rem;
+	color: #c5dc50;
+	margin-bottom: 1rem;
+}
+
+.not-found__main p {
+	margin-bottom: 2.5rem;
+}
+
+.not-found__main p em {
+	font-style: italic;
+	color: #c5dc50;
+}
+
+.not-found__main a {
+	font-family: "Fontdiner Swanky", cursive;
+	font-size: 1rem;
+	color: #383838;
+	border: none;
+	background-color: #f36a6f;	
+	padding: 1rem 2.5rem;
+	transform: skew(-5deg);
+	transition: all 0.1s ease;
+	cursor: pointer;
+}
+
+.not-found__main a:hover {
+	background-color: #c5dc50;
+	transform: scale(1.15);
+}
+
+@media (max-width: 700px) {
+
+	.not-found__wrapper {
+		flex-flow: column;
+	}
+
+	.not-found__wrapper>* {
+		max-width: 700px;
+		height: 100%;
+	}
+
+	.not-found__side {
+		background-image: none;
+		background-color: white;
+	}
+
+	.not-found__side img {
+		max-width: 300px;
+	}
+}

@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { LoadingPage } from '../../components/loading/LoadingPage';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { LoginPage } from '../../pages/auth/login/s1-ui/LoginPage';
+import { Logout } from '../../pages/auth/login/s1-ui/Logout';
+import { NotFound } from '../../pages/errors/NotFound';
 import { SheetPage } from '../../pages/sheet/s1-ui/SheetPage';
 import { DesignType } from '../s2-bll/state/appState';
 import { AppStoreType } from '../s2-bll/state/store';
@@ -29,7 +31,9 @@ function App() {
             <Routes>
                 <Route path='/' element={<SheetPage />} />
                 <Route path='login' element={<LoginPage />} />
-                <Route path='*' element={<div>Error</div>} />
+                <Route path='logout' element={<Logout design={design} />} />
+                <Route path='404' element={<NotFound />} />
+                <Route path="*" element={<Navigate to="/404" />} />
             </Routes>
         </div>
     );
