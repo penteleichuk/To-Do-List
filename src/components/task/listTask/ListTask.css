@@ -4,6 +4,10 @@
     margin: 15px;
 }
 
+.task-list::-webkit-scrollbar {
+    display: none;
+}
+
 .task-list__wrapper {
     margin-bottom: 10px;
     line-height: 35px;
