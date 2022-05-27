@@ -35,32 +35,31 @@ export const LoginPage = (): JSX.Element => {
 			<ChangeTheme />
 		</header>
 
-		<section>
-			<Formik initialValues={{ email: 'free@samuraijs.com', password: 'free', remember: false, captcha: '', error: '' }} validateOnBlur onSubmit={handleSubmit} validationSchema={validationSchema}>
-				{({ values, errors, touched, handleChange, handleBlur, isValid, dirty, status }) => (
+		<Formik initialValues={{ email: 'free@samuraijs.com', password: 'free', remember: false, captcha: '', error: '' }} validateOnBlur onSubmit={handleSubmit} validationSchema={validationSchema}>
+			{({ values, errors, touched, handleChange, handleBlur, isValid, dirty, status }) => (
 
-					<Form className={'form'}>
-						<h1 className={'formTitle'}>Auth</h1>
-						<div className={'formDescription'}>
-							<div>Use common test account credentials:</div>
-							<div>Email: free@samuraijs.com</div>
-							<div>Password: free</div>
-						</div>
-						<div className={'formWrapper'}>
-							<label htmlFor="email" className={'formLabel'}>
-								<span className={'formLabelText'}>Email: {touched.email && errors.email && <span>{errors.email}</span>}</span>
-							</label>
-							<Field className={'input'} type="text" name="email" placeholder={'email'} value={values.email} onBlur={handleBlur} onChange={handleChange} />
-						</div>
+				<Form className={'form'}>
+					<h1 className={'formTitle'}>Auth</h1>
+					<div className={'formDescription'}>
+						<div>Test account:</div>
+						<div>Email: free@samuraijs.com</div>
+						<div>Password: free</div>
+					</div>
+					<div className={'formWrapper'}>
+						<label htmlFor="email" className={'formLabel'}>
+							<span className={'formLabelText'}>Email: {touched.email && errors.email && <span>{errors.email}</span>}</span>
+						</label>
+						<Field className={'input'} type="text" name="email" placeholder={'email'} value={values.email} onBlur={handleBlur} onChange={handleChange} />
+					</div>
 
-						<div className={'formWrapper'}>
-							<label htmlFor="password" className={'formLabel'}>
-								<span className={'formLabelText'}>Password: {touched.password && errors.password && <span>{errors.password}</span>}</span>
-							</label>
-							<Field className={'input'} type="password" name="password" placeholder={'password'} value={values.password} onBlur={handleBlur} onChange={handleChange} />
-						</div>
+					<div className={'formWrapper'}>
+						<label htmlFor="password" className={'formLabel'}>
+							<span className={'formLabelText'}>Password: {touched.password && errors.password && <span>{errors.password}</span>}</span>
+						</label>
+						<Field className={'input'} type="password" name="password" placeholder={'password'} value={values.password} onBlur={handleBlur} onChange={handleChange} />
+					</div>
 
-						{/* {props.captcha &&
+					{/* {props.captcha &&
 						<div className={style.formWrapper}>
 							<label htmlFor="password" className={style.formLabel}>
 								<span className={style.formLabelText}>Captcha: {touched.captcha && errors.captcha && <span>{errors.captcha}</span>}</span>
@@ -70,20 +69,19 @@ export const LoginPage = (): JSX.Element => {
 						</div>
 					} */}
 
-						<div className={'formWrapper'}>
-							<Field type="checkbox" name="remember" onBlur={handleBlur} onChange={handleChange} />
-							<span style={{ display: "inline-block" }} className={'formLabelText'}>Remember me?</span>
-						</div>
+					<div className={'formWrapper formLabelTextLabel'}>
+						<Field type="checkbox" name="remember" onBlur={handleBlur} onChange={handleChange} />
+						<span style={{ display: "inline-block" }} className={'formLabelText'}>Remember me?</span>
+					</div>
 
-						{status?.error && <div className={'formError'}>{status.error}</div>}
+					{status?.error && <div className={'formError'}>{status.error}</div>}
 
-						<div className={'formWrapper'}>
-							<button className={'formButton'} type={'submit'} disabled={!isValid && !dirty}>Sign</button>
-						</div>
-					</Form>
-				)}
-			</Formik>
-		</section>
+					<div className={'formWrapper'}>
+						<button className={'formButton'} type={'submit'} disabled={!isValid && !dirty}>Sign</button>
+					</div>
+				</Form>
+			)}
+		</Formik>
 
 		<Notification />
 	</div>

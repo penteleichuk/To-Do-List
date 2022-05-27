@@ -10,7 +10,6 @@ import { logout } from "../s2-bll/thunks/loginThunks";
 export const Logout = ({ design }: { design: DesignType }) => {
 
 	const isAuth = useSelector<AppStoreType, boolean>(state => state.auth.isAuth);
-
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
