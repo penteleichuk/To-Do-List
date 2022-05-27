@@ -1,7 +1,6 @@
-import { Dispatch } from 'redux';
 import { AppActionsType, setAppTheme } from '../actions/appActions';
 import { AppInitState, AppStateType, DesignType } from '../state/appState';
-import { AppActionType, AppThunk } from '../state/store';
+import { AppThunk } from '../state/store';
 
 export const appReducer = (
 	state: AppStateType = AppInitState,
@@ -19,6 +18,10 @@ export const appReducer = (
 				...state,
 				notification: { ...action.payload },
 			};
+		}
+
+		case 'SET-INIT-APP': {
+			return { ...state, initialized: action.value };
 		}
 
 		default: {

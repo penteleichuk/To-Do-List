@@ -1,7 +1,8 @@
-import { useDispatch } from 'react-redux';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
-import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import thunkMiddleware, { ThunkAction } from 'redux-thunk';
 import { DEV_VERSION } from '../../../configs/main';
+import { loginActionsType } from '../../../pages/auth/login/s2-bll/loginActions';
+import { loginReducer } from '../../../pages/auth/login/s2-bll/loginReducer';
 import { TaskActionsType } from '../../../pages/sheet/s2-bll/actions/taskActions';
 import { ToDoActionsType } from '../../../pages/sheet/s2-bll/actions/toDoActions';
 import { taskReducer } from '../../../pages/sheet/s2-bll/reducers/taskReducer';
@@ -13,6 +14,7 @@ const reducers = combineReducers({
 	app: appReducer,
 	todo: toDoReducer,
 	task: taskReducer,
+	auth: loginReducer,
 });
 
 export const store = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -25,7 +27,11 @@ export const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 // });
 
 export type AppStoreType = ReturnType<typeof reducers>;
-export type AppActionType = AppActionsType | TaskActionsType | ToDoActionsType;
+export type AppActionType =
+	| AppActionsType
+	| TaskActionsType
+	| ToDoActionsType
+	| loginActionsType;
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk<ReturnType = void> = ThunkAction<
 	ReturnType,

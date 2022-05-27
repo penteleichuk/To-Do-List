@@ -15,7 +15,15 @@ export const setAppNotification = ({
 	} as const;
 };
 
+export const setInitApp = (value: boolean) => {
+	return { type: 'SET-INIT-APP', value } as const;
+};
+
 export type SetAppTheme = ReturnType<typeof setAppTheme>;
 export type SetNotificationActionType = ReturnType<typeof setAppNotification>;
+export type SetInitApp = ReturnType<typeof setInitApp>;
 
-export type AppActionsType = SetAppTheme | SetNotificationActionType;
+export type AppActionsType =
+	| SetAppTheme
+	| SetNotificationActionType
+	| SetInitApp;

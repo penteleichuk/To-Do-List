@@ -6,11 +6,13 @@ export type NotificationType = {
 };
 
 export type AppStateType = {
+	initialized: boolean;
 	theme: DesignType;
 	notification: NotificationType;
 };
 
 export const AppInitState: AppStateType = {
+	initialized: false,
 	theme: 'light',
 	notification: {
 		show: false,

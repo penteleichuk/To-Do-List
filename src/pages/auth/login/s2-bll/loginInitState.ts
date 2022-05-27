@@ -1,5 +1,7 @@
-export type LoginStateType = any;
+export type AuthStateType = {
+	isAuth: boolean;
+};
 
-export const loginInitState: LoginStateType = {
-	//...
+export const loginInitState: AuthStateType = {
+	isAuth: false,
 };

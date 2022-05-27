@@ -1,5 +1,6 @@
-type DefaultActionType = {
-	type: 'DEFAULT';
+export const setAuth = (value: boolean) => {
+	return { type: 'SET-AUTH', value } as const;
 };
 
-export type loginActionsType = DefaultActionType;
+export type SetAuthActionType = ReturnType<typeof setAuth>;
+export type loginActionsType = SetAuthActionType;
