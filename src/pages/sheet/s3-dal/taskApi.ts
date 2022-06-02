@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios';
 import { instance } from '../../../app/s3-dall/instance';
 import { TaskPriorities, TaskStatuses } from '../../../constants/task';
-import { ResponseType } from '../s3-dal/toDoApi';
-import { TaskType } from '../s2-bll/state/taskInitState';
+import { ResponseType } from './toDoApi';
+import {TaskType} from "../s2-bll/slices/taskSlice";
 
 export const taskApi = {
 	// Get portion of tasks for todolist

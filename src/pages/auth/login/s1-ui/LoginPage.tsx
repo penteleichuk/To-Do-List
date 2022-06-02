@@ -1,13 +1,13 @@
 import * as yup from 'yup';
-import { Field, Form, Formik } from "formik"
+import {Field, Form, Formik} from "formik"
 import { ChangeTheme } from "../../../../components/changeTheme/ChangeTheme"
 import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { authLogin } from '../s2-bll/loginThunks';
-import { Notification } from './../../../../components/notification/Notification'
+import { Notification } from '../../../../components/notification/Notification'
 import { useSelector } from 'react-redux';
-import './Form.css'
 import { AppStoreType } from '../../../../app/s2-bll/store';
 import { Navigate } from 'react-router-dom';
+import './Form.css'
 
 export const LoginPage = (): JSX.Element => {
 

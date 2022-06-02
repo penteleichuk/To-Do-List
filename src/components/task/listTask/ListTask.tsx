@@ -1,6 +1,6 @@
 import React from "react";
-import { TaskType } from "../../../pages/sheet/s2-bll/state/taskInitState";
 import { EditableButton } from "../../editableButton/EditableButton";
+import {TaskType} from "../../../pages/sheet/s2-bll/slices/taskSlice";
 import './ListTask.css'
 
 export const ListTask = React.memo(({ tasks }: { tasks: Array<TaskType> }) => {

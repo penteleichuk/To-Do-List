@@ -10,15 +10,15 @@ import {
     setToDoList,
     setTodoStatus,
     setTodoTitle,
-} from '../actions/toDoActions';
+} from '../slices/toDoSlice';
 import {setAppNotification} from "../../../../app/s2-bll/appSlice";
 import {Dispatch} from "redux";
 
-export const fetchToDo = (): AppThunk => async dispatch => {
+export const fetchToDo = (): AppThunk => async (dispatch: Dispatch) => {
     try {
         const res = await toDoApi.getToDoLists();
         if (res.status === 200) {
-            dispatch(setToDoList(res.data));
+            dispatch(setToDoList({toDoLists: res.data}));
         }
         return res;
     } catch (error: any) {
@@ -26,15 +26,13 @@ export const fetchToDo = (): AppThunk => async dispatch => {
     }
 };
 
-export const fetchToDoSetTitle =
-    (todoId: string, title: string): AppThunk =>
-        dispatch => {
-            dispatch(setTodoStatus(todoId, 'loading'));
+export const fetchToDoSetTitle = (todoId: string, title: string): AppThunk => (dispatch: Dispatch) => {
+            dispatch(setTodoStatus({todoId, status: 'loading'}));
             toDoApi
                 .updateToDo(todoId, title)
                 .then(res => {
                     if (res.data.resultCode === 0) {
-                        dispatch(setTodoTitle(todoId, title));
+                        dispatch(setTodoTitle({todoId, title: title}));
                     } else {
                         handleServerError(res.data, dispatch);
                     }
@@ -43,17 +41,17 @@ export const fetchToDoSetTitle =
                     handleNetworkError(error, dispatch);
                 })
                 .finally(() => {
-                    dispatch(setTodoStatus(todoId, 'idle'));
+                    dispatch(setTodoStatus({todoId, status: 'idle'}));
                 });
         };
 
 export const fetchDeleteTodo = (todoId: string) => (dispatch: Dispatch) => {
-    dispatch(setTodoStatus(todoId, 'loading'));
+    dispatch(setTodoStatus({todoId, status: 'loading'}));
     toDoApi
         .deleteToDo(todoId)
         .then(res => {
             if (res.data.resultCode === 0) {
-                dispatch(deleteTodo(todoId));
+                dispatch(deleteTodo({todoId: todoId}));
                 dispatch(
                     setAppNotification({show: true, message: 'Successful removal of the scheme'})
                 );
@@ -65,7 +63,7 @@ export const fetchDeleteTodo = (todoId: string) => (dispatch: Dispatch) => {
             handleNetworkError(error, dispatch);
         })
         .finally(() => {
-            dispatch(setTodoStatus(todoId, 'idle'));
+            dispatch(setTodoStatus({todoId, status: 'idle'}));
         });
 };
 
@@ -74,7 +72,7 @@ export const fetchAddTodo = (title: string): AppThunk => (dispatch: Dispatch) =>
         .createToDo(title)
         .then(res => {
             if (res.data.resultCode === 0) {
-                dispatch(addTodo(res.data.data.item));
+                dispatch(addTodo({todo: res.data.data.item}));
                 dispatch(
                     setAppNotification({show: true, message: 'successful scheme creation'})
                 );

@@ -1,10 +1,9 @@
 import React from "react";
 import { useEffect } from "react";
+import {MessagePropsType} from "./AddScheme";
 
-export type TodoAddMessagePropsType = {
-    type: null | "error" | "success"
-    message: string | null
-    setMessage?: any
+export type TodoAddMessagePropsType = MessagePropsType & {
+    setMessage: ({ type, message}: MessagePropsType) => void
 }
 
 export const TodoAddMessage = React.memo(({ message, type, setMessage }: TodoAddMessagePropsType) => {

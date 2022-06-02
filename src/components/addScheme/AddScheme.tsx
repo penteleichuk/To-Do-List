@@ -1,13 +1,18 @@
 import { useState, KeyboardEvent, ChangeEvent } from "react";
-import { TodoAddMessage, TodoAddMessagePropsType } from "./TodoAddMessage";
+import { TodoAddMessage } from "./TodoAddMessage";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import React from "react";
 import { fetchAddTodo } from "../../pages/sheet/s2-bll/thunks/toDoThunks";
 import './AddScheme.css';
 
+export type MessagePropsType = {
+    type: null | "error" | "success"
+    message: string | null
+}
+
 export const AddScheme = React.memo(() => {
     const [title, setTitle] = useState<string>("");
-    const [message, setMessage] = useState<TodoAddMessagePropsType>({ type: null, message: null });
+    const [message, setMessage] = useState<MessagePropsType>({ type: null, message: null });
     const dispatch = useAppDispatch();
 
     const onClickAddSchedule = () => {

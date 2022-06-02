@@ -4,11 +4,11 @@ import { AddScheme } from "../../../components/addScheme/AddScheme";
 import { RenderTask } from "../../../components/task/renderTask/RenderTask";
 import { useSelector } from "react-redux";
 import { AppStoreType } from "../../../app/s2-bll/store";
-import { ToDoListType } from "../s2-bll/state/toDoInitState";
-import { Notification } from "./../../../components/notification/Notification"
+import { Notification } from "../../../components/notification/Notification"
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { Navigate } from "react-router-dom";
 import { fetchToDo } from "../s2-bll/thunks/toDoThunks";
+import {ToDoListType} from "../s2-bll/slices/toDoSlice";
 import './Sheet.css'
 import './Header.css'
 import './Loading.css'
