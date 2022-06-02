@@ -5,10 +5,6 @@ import {AppThunk} from './store';
 import {Dispatch} from "redux";
 import {DesignType, setAppTheme, setInitApp} from "./slice";
 
-export const changeTheme = (theme: DesignType): AppThunk => (dispatch: Dispatch) => {
-    dispatch(setAppTheme({theme}));
-};
-
 export const initApp = (): AppThunk => (dispatch: Dispatch) => {
     authApi
         .getAuthMe()
@@ -25,14 +21,12 @@ export const initApp = (): AppThunk => (dispatch: Dispatch) => {
     initAppTheme();
     // dispatch(initAppTheme());
 };
-
 export const initAppTheme = () => (dispatch: Dispatch) => {
     const getStorageTheme = localStorage.getItem('theme');
     if (getStorageTheme) {
         dispatch(setAppTheme(JSON.parse(getStorageTheme)));
     }
 };
-
 export const changeAppTheme = (theme: DesignType): AppThunk => (dispatch: Dispatch) => {
     localStorage.setItem('theme', JSON.stringify(theme));
     dispatch(setAppTheme({theme}));
