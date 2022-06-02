@@ -7,9 +7,9 @@ import { LoginPage } from '../../pages/auth/login/s1-ui/LoginPage';
 import { Logout } from '../../pages/auth/login/s1-ui/Logout';
 import { NotFound } from '../../pages/errors/NotFound';
 import { SheetPage } from '../../pages/sheet/s1-ui/SheetPage';
-import { DesignType } from '../s2-bll/state/appState';
 import { AppStoreType } from '../s2-bll/store';
 import { initApp } from '../s2-bll/thunks';
+import {DesignType} from "../s2-bll/slice";
 import './App.css';
 
 function App() {

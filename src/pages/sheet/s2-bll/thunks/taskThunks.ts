@@ -1,4 +1,3 @@
-import { setAppNotification } from '../../../../app/s2-bll/actions/appActions';
 import { AppStoreType, AppThunk } from '../../../../app/s2-bll/store';
 import {
 	handleNetworkError,
@@ -12,6 +11,8 @@ import {
 	updateTask,
 } from '../actions/taskActions';
 import { setTodoStatus } from '../actions/toDoActions';
+import {Dispatch} from "redux";
+import {setAppNotification} from "../../../../app/s2-bll/slice";
 
 export const fetchTasks =
 	(todoId: string): AppThunk =>
@@ -30,9 +31,7 @@ export const fetchTasks =
 			});
 	};
 
-export const fetchAddTask =
-	(todoId: string, title: string): AppThunk =>
-	dispatch => {
+export const fetchAddTask = (todoId: string, title: string): AppThunk => (dispatch: Dispatch) => {
 		dispatch(setTodoStatus(todoId, 'loading'));
 		taskApi
 			.createTask(todoId, title)
@@ -40,10 +39,7 @@ export const fetchAddTask =
 				if (res.data.resultCode === 0) {
 					dispatch(addTask(res.data.data.item));
 					dispatch(
-						setAppNotification({
-							show: true,
-							message: 'successful task creation',
-						})
+						setAppNotification({show: true, message: 'successful task creation'})
 					);
 				} else {
 					handleServerError(res.data, dispatch);

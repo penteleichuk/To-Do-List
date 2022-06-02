@@ -7,9 +7,8 @@ import {TaskActionsType} from '../../pages/sheet/s2-bll/actions/taskActions';
 import {ToDoActionsType} from '../../pages/sheet/s2-bll/actions/toDoActions';
 import {taskReducer} from '../../pages/sheet/s2-bll/reducers/taskReducer';
 import {toDoReducer} from '../../pages/sheet/s2-bll/reducers/toDoReducer';
-import {AppActionsType} from './actions/appActions';
-import {appReducer} from './reducers/appReducer';
 import {configureStore} from "@reduxjs/toolkit";
+import {appReducer} from "./slice";
 
 const reducers = combineReducers({
     app: appReducer,
@@ -22,22 +21,21 @@ const reducers = combineReducers({
 
 export const store = configureStore({
     reducer: reducers,
-    // middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware)
     middleware: [thunkMiddleware],
 });
 console.log(store)
 
 export type AppStoreType = ReturnType<typeof reducers>;
 export type AppActionType =
-    | AppActionsType
     | TaskActionsType
     | ToDoActionsType
     | loginActionsType;
-export type AppDispatch = typeof store.dispatch;
+
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,
     AppStoreType,
     unknown,
     AppActionType>;
+
 export type AppRootStateType = ReturnType<typeof reducers>;
 
 if (DEV_VERSION) {

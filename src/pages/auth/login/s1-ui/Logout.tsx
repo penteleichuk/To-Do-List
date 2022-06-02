@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { DesignType } from "../../../../app/s2-bll/state/appState";
 import { AppStoreType } from "../../../../app/s2-bll/store";
 import { LoadingPage } from "../../../../components/loading/LoadingPage";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { logout } from "../s2-bll/thunks/loginThunks";
+import {DesignType} from "../../../../app/s2-bll/slice";
 
 export const Logout = ({ design }: { design: DesignType }) => {
 
