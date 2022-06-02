@@ -2,7 +2,7 @@ import * as yup from 'yup';
 import { Field, Form, Formik } from "formik"
 import { ChangeTheme } from "../../../../components/changeTheme/ChangeTheme"
 import { useAppDispatch } from '../../../../hooks/useAppDispatch';
-import { authLogin } from '../s2-bll/thunks/loginThunks';
+import { authLogin } from '../s2-bll/loginThunks';
 import { Notification } from './../../../../components/notification/Notification'
 import { useSelector } from 'react-redux';
 import './Form.css'

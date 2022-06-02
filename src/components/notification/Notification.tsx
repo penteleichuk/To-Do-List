@@ -20,7 +20,7 @@ export const Notification = React.memo(() => {
 				clearTimeout(timeout);
 			};
 		}
-	}, [notification.message, notification.show]);
+	}, [notification.message, notification.show, dispatch]);
 
 	return <>
 		{notification.show &&
