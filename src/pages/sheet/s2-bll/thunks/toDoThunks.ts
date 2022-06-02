@@ -1,5 +1,5 @@
 import { setAppNotification } from '../../../../app/s2-bll/actions/appActions';
-import { AppThunk } from '../../../../app/s2-bll/state/store';
+import { AppThunk } from '../../../../app/s2-bll/store';
 import {
 	handleNetworkError,
 	handleServerError,

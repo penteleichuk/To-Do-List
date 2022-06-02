@@ -1,4 +1,4 @@
-import { AppThunk } from '../../../../../app/s2-bll/state/store';
+import { AppThunk } from '../../../../../app/s2-bll/store';
 import {
 	handleNetworkError,
 	handleServerError,
