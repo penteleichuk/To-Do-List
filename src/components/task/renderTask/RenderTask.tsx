@@ -7,7 +7,7 @@ import { TaskStatuses } from "../../../constants/task";
 import { ToDoListType } from "../../../pages/sheet/s2-bll/state/toDoInitState";
 import { TaskListType } from "../../../pages/sheet/s2-bll/state/taskInitState";
 import { useSelector } from "react-redux";
-import { AppStoreType } from "../../../app/s2-bll/state/store";
+import { AppStoreType } from "../../../app/s2-bll/store";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { Progress } from "../../progress/Progress";
 import { fetchTasks } from "../../../pages/sheet/s2-bll/thunks/taskThunks";

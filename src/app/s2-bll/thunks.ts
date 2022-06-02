@@ -1,9 +1,9 @@
-import { setAuth } from '../../../pages/auth/login/s2-bll/loginActions';
-import { authApi } from '../../../pages/auth/login/s3-dal/authApi';
-import { handleNetworkError } from '../../../utils/error-utils';
-import { setAppTheme, setInitApp } from '../actions/appActions';
-import { DesignType } from '../state/appState';
-import { AppThunk } from '../state/store';
+import { setAuth } from '../../pages/auth/login/s2-bll/loginActions';
+import { authApi } from '../../pages/auth/login/s3-dal/authApi';
+import { handleNetworkError } from '../../utils/error-utils';
+import { setAppTheme, setInitApp } from './actions/appActions';
+import { DesignType } from './state/appState';
+import { AppThunk } from './store';
 
 export const changeTheme =
 	(theme: DesignType): AppThunk =>

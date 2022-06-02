@@ -6,7 +6,7 @@ import { authLogin } from '../s2-bll/thunks/loginThunks';
 import { Notification } from './../../../../components/notification/Notification'
 import { useSelector } from 'react-redux';
 import './Form.css'
-import { AppStoreType } from '../../../../app/s2-bll/state/store';
+import { AppStoreType } from '../../../../app/s2-bll/store';
 import { Navigate } from 'react-router-dom';
 
 export const LoginPage = (): JSX.Element => {

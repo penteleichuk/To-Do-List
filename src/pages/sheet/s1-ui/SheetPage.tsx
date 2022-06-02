@@ -3,7 +3,7 @@ import { ChangeTheme } from "../../../components/changeTheme/ChangeTheme";
 import { AddScheme } from "../../../components/addScheme/AddScheme";
 import { RenderTask } from "../../../components/task/renderTask/RenderTask";
 import { useSelector } from "react-redux";
-import { AppStoreType } from "../../../app/s2-bll/state/store";
+import { AppStoreType } from "../../../app/s2-bll/store";
 import { ToDoListType } from "../s2-bll/state/toDoInitState";
 import { Notification } from "./../../../components/notification/Notification"
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
