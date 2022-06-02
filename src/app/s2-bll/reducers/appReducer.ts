@@ -1,6 +1,5 @@
-import { AppActionsType, setAppTheme } from '../actions/appActions';
-import { AppInitState, AppStateType, DesignType } from '../state/appState';
-import { AppThunk } from '../state/store';
+import { AppActionsType } from '../actions/appActions';
+import { AppInitState, AppStateType } from '../state/appState';
 
 export const appReducer = (
 	state: AppStateType = AppInitState,
