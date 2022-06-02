@@ -16,7 +16,7 @@ export const initialState: AppStateType = {
     },
 };
 
-export const slice = createSlice({
+export const appSlice = createSlice({
     name: 'app',
     initialState,
     reducers: {
@@ -35,8 +35,8 @@ export const slice = createSlice({
 });
 
 
-export const {setAppNotification, setAppTheme, setInitApp} = slice.actions;
-export const appReducer = slice.reducer;
+export const {setAppNotification, setAppTheme, setInitApp} = appSlice.actions;
+export const appReducer = appSlice.reducer;
 
 export type DesignType = 'light' | 'dark';
 

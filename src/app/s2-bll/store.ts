@@ -6,8 +6,8 @@ import {ToDoActionsType} from '../../pages/sheet/s2-bll/actions/toDoActions';
 import {taskReducer} from '../../pages/sheet/s2-bll/reducers/taskReducer';
 import {toDoReducer} from '../../pages/sheet/s2-bll/reducers/toDoReducer';
 import {configureStore} from "@reduxjs/toolkit";
-import {appReducer} from "./slice";
-import {authReducer} from "../../pages/auth/login/s2-bll/slice";
+import {appReducer} from "./appSlice";
+import {authReducer} from "../../pages/auth/login/s2-bll/authSlice";
 
 const reducers = combineReducers({
     app: appReducer,

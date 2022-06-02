@@ -5,7 +5,7 @@ import { AppStoreType } from "../../../../app/s2-bll/store";
 import { LoadingPage } from "../../../../components/loading/LoadingPage";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { logout } from "../s2-bll/loginThunks";
-import {DesignType} from "../../../../app/s2-bll/slice";
+import {DesignType} from "../../../../app/s2-bll/appSlice";
 
 export const Logout = ({ design }: { design: DesignType }) => {
 

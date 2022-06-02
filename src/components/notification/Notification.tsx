@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { AppStoreType } from '../../app/s2-bll/store';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import './Notification.css';
-import {NotificationType, setAppNotification} from "../../app/s2-bll/slice";
+import {NotificationType, setAppNotification} from "../../app/s2-bll/appSlice";
 
 export const Notification = React.memo(() => {
 	const dispatch = useAppDispatch();

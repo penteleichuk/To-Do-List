@@ -12,7 +12,7 @@ import {
 } from '../actions/taskActions';
 import { setTodoStatus } from '../actions/toDoActions';
 import {Dispatch} from "redux";
-import {setAppNotification} from "../../../../app/s2-bll/slice";
+import {setAppNotification} from "../../../../app/s2-bll/appSlice";
 
 export const fetchTasks =
 	(todoId: string): AppThunk =>

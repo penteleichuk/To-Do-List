@@ -2,8 +2,8 @@ import {authApi} from '../../pages/auth/login/s3-dal/authApi';
 import {handleNetworkError} from '../../utils/error-utils';
 import {AppThunk} from './store';
 import {Dispatch} from "redux";
-import {DesignType, setAppTheme, setInitApp} from "./slice";
-import {setAuth} from "../../pages/auth/login/s2-bll/slice";
+import {DesignType, setAppTheme, setInitApp} from "./appSlice";
+import {setAuth} from "../../pages/auth/login/s2-bll/authSlice";
 
 export const initApp = (): AppThunk => (dispatch: Dispatch) => {
     authApi

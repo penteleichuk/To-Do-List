@@ -11,7 +11,7 @@ import {
     setTodoStatus,
     setTodoTitle,
 } from '../actions/toDoActions';
-import {setAppNotification} from "../../../../app/s2-bll/slice";
+import {setAppNotification} from "../../../../app/s2-bll/appSlice";
 import {Dispatch} from "redux";
 
 export const fetchToDo = (): AppThunk => async dispatch => {

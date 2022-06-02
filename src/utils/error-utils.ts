@@ -1,6 +1,6 @@
 import {ResponseType} from '../pages/sheet/s3-dal/toDoApi';
 import {Dispatch} from "redux";
-import {setAppNotification} from "../app/s2-bll/slice";
+import {setAppNotification} from "../app/s2-bll/appSlice";
 
 export const handleServerError = <D>(data: ResponseType<D>, dispatch: Dispatch) => {
     if (data.messages.length) {

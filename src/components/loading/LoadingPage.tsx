@@ -1,6 +1,6 @@
 
 import './LoadingPage.css';
-import {DesignType} from "../../app/s2-bll/slice";
+import {DesignType} from "../../app/s2-bll/appSlice";
 
 export const LoadingPage = ({ design }: { design: DesignType }) => {
 	return <div className={design}>

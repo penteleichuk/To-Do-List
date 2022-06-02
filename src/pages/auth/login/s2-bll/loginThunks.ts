@@ -5,7 +5,7 @@ import {
 } from '../../../../utils/error-utils';
 import {authApi, LoginParamsType} from '../s3-dal/authApi';
 import {Dispatch} from "redux";
-import {setAuth} from "./slice";
+import {setAuth} from "./authSlice";
 
 export const authLogin = (data: LoginParamsType): AppThunk => (dispatch: Dispatch) => {
     authApi

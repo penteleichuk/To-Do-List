@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { AppStoreType } from '../../app/s2-bll/store';
-import { changeAppTheme } from '../../app/s2-bll/thunks';
+import { changeAppTheme } from '../../app/s2-bll/appThunks';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import './ChangeTheme.css';
-import {DesignType} from "../../app/s2-bll/slice";
+import {DesignType} from "../../app/s2-bll/appSlice";
 
 export const ChangeTheme = React.memo(() => {
 
