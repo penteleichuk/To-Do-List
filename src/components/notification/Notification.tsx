@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { AppStoreType } from '../../app/s2-bll/store';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import './Notification.css';
-import {NotificationType, setAppNotification} from "../../app/s2-bll/appSlice";
+import { NotificationType, setAppNotification } from "../../app/s2-bll/appSlice";
 
 export const Notification = React.memo(() => {
 	const dispatch = useAppDispatch();
@@ -14,7 +14,7 @@ export const Notification = React.memo(() => {
 		if (notification.show) {
 			const timeout = setTimeout(() => {
 				dispatch(setAppNotification({ show: false, message: null }))
-			}, 1500);
+			}, 3500);
 
 			return () => {
 				clearTimeout(timeout);

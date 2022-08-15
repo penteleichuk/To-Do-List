@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { AppStoreType } from "../../../app/s2-bll/store";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { Progress } from "../../progress/Progress";
-import { fetchTasks } from "../../../pages/sheet/s2-bll/thunks/taskThunks";
+import {fetchingTasks} from "../../../pages/sheet/s2-bll/thunks/taskThunks";
 import {ToDoListType} from "../../../pages/sheet/s2-bll/slices/toDoSlice";
 import {TaskListType, TaskType} from "../../../pages/sheet/s2-bll/slices/taskSlice";
 import './RenderTask.css';
@@ -21,7 +21,7 @@ export const RenderTask = React.memo(({ todo }: { todo: ToDoListType }) => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(fetchTasks(todo.id))
+        dispatch(fetchingTasks(todo.id))
     }, [dispatch, todo.id]);
 
     let sortTasks = tasks[todo.id];
