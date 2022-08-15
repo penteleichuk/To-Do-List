@@ -31,7 +31,7 @@ export const appSlice = createSlice({
         setInitApp(state, action: PayloadAction<{ value: boolean }>) {
             state.initialized = action.payload.value
         }
-    }
+    },
 });
 
 

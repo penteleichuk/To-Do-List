@@ -2,6 +2,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {TaskPriorities, TaskStatuses} from "../../../../constants/task";
 import {UpdateTaskModelType} from "../../s3-dal/taskApi";
 import {addTodo, deleteTodo, setToDoList} from "./toDoSlice";
+import {fetchingTasks} from "../thunks/taskThunks";
 
 export type TaskInitStateType = TaskListType;
 
@@ -28,9 +29,6 @@ const slice = createSlice({
     name: 'task',
     initialState,
     reducers: {
-        setTasks(state, action: PayloadAction<{ todoId: string, tasks: TaskType[] }>) {
-            state[action.payload.todoId] = action.payload.tasks;
-        },
         addTask(state, action: PayloadAction<{ task: TaskType }>) {
             state[action.payload.task.todoListId].unshift(action.payload.task);
         },
@@ -58,8 +56,13 @@ const slice = createSlice({
         builder.addCase(setToDoList, (state, action) => {
             action.payload.toDoLists.forEach(el => state[el.id] = [])
         });
+        builder.addCase(fetchingTasks.fulfilled, (state, action) => {
+            if(action.payload?.todoId) {
+                state[action.payload.todoId] = action.payload.tasks;
+            }
+        })
     }
 })
 
 export const taskReducer = slice.reducer;
-export const {setTasks, addTask, removeTask, updateTask} = slice.actions;
+export const {addTask, removeTask, updateTask} = slice.actions;
